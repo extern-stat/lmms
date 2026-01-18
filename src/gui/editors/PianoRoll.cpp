@@ -5457,7 +5457,8 @@ void PianoRollWindow::setCurrentMidiClip( MidiClip* clip )
 
 	if ( clip )
 	{
-		setWindowTitle( tr( "Piano-Roll - %1" ).arg( clip->name() ) );
+		auto title = clip->name().isEmpty() ? clip->instrumentTrack()->name() : clip->name();
+		setWindowTitle(tr("Piano-Roll - %1").arg(title));
 		m_fileToolsButton->setEnabled(true);
 		connect( clip->instrumentTrack(), SIGNAL(nameChanged()), this, SLOT(updateAfterMidiClipChange()));
 		connect( clip, SIGNAL(dataChanged()), this, SLOT(updateAfterMidiClipChange()));
@@ -5693,7 +5694,10 @@ void PianoRollWindow::clipRenamed()
 {
 	if ( currentMidiClip() )
 	{
-		setWindowTitle( tr( "Piano-Roll - %1" ).arg( currentMidiClip()->name() ) );
+		auto title = currentMidiClip()->name().isEmpty()
+			? currentMidiClip()->instrumentTrack()->name()
+			: currentMidiClip()->name();
+        setWindowTitle(tr("Piano-Roll - %1").arg(title));
 		m_fileToolsButton->setEnabled(true);
 	}
 	else
