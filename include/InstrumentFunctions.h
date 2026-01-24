@@ -80,11 +80,12 @@ public:
 		QString m_name;
 		ChordSemiTones m_semiTones;
 		int m_size;
+        bool m_isScale;
 
 	public:
 		Chord() : m_size( 0 ) {}
 
-		Chord( const char * n, const ChordSemiTones & semi_tones );
+		Chord(const char* n, const ChordSemiTones& semiTones, bool isScale = false);
 
 		int size() const
 		{
@@ -93,7 +94,7 @@ public:
 
 		bool isScale() const
 		{
-			return size() > 6;
+			return m_isScale;
 		}
 
 		bool isEmpty() const
@@ -129,6 +130,7 @@ public:
 		{
 			const char * m_name;
 			ChordSemiTones m_semiTones;
+            bool m_isScale = false;
 		};
 
 		static std::array<Init, NUM_CHORD_TABLES> s_initTable;
