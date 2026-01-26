@@ -3514,8 +3514,7 @@ void PianoRoll::paintEvent(QPaintEvent * pe )
 				p.setPen(pressed ? m_whiteKeyActiveTextShadow : m_whiteKeyInactiveTextShadow);
 				p.drawText(textRect.adjusted(0, 1, 1, 0), Qt::AlignRight | Qt::AlignHCenter, noteString);
 				p.setPen(pressed ? m_whiteKeyActiveTextColor : m_whiteKeyInactiveTextColor);
-				// if (static_cast<Key>(keyCode) == Key::C) { p.setPen(textColor()); }
-				// else { p.setPen(textColorLight()); }
+				p.setPen(static_cast<Key>(keyCode) == Key::C ? m_textColor : m_textColorLight);
 				p.drawText(textRect, Qt::AlignRight | Qt::AlignHCenter, noteString);
 			}
 		};
