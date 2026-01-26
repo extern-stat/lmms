@@ -124,13 +124,13 @@ const int DETUNING_HANDLE_RADIUS = 3;
 SimpleTextFloat * PianoRoll::s_textFloat = nullptr;
 
 static std::array<QString, 12> s_noteStrings {
-	"C", "C\u266F / D\u266D", "D", "D\u266F / E\u266D", "E", "F", "F\u266F / G\u266D", 
-	"G", "G\u266F / A\u266D", "A", "A\u266F / B\u266D", "B"
+	"C", "C\u266F", "D", "D\u266F", "E", "F", "F\u266F",
+	"G", "G\u266F", "A", "A\u266F", "B"
 };
 
-static QString getNoteString(int key)
+static QString getNoteString(int key, bool withOctave)
 {
-	return s_noteStrings[key % 12] + QString::number(static_cast<int>(FirstOctave + key / KeysPerOctave));
+	return s_noteStrings[key % 12] + (withOctave ? QString::number(static_cast<int>(FirstOctave + key / KeysPerOctave)) : "");
 }
 
 // used for drawing of piano
@@ -1041,7 +1041,7 @@ void PianoRoll::drawNoteRect( QPainter & p, int x, int y,
 		int const noteTextHeight = static_cast<int>(noteHeight * 0.8);
 		if (noteTextHeight > 6)
 		{
-			QString noteKeyString = getNoteString(n->key());
+			QString noteKeyString = getNoteString(n->key(), noteWidth >= 23);
 
 			QFont noteFont(p.font());
 			noteFont = adjustedToPixelSize(noteFont, noteTextHeight);
@@ -1057,7 +1057,7 @@ void PianoRoll::drawNoteRect( QPainter & p, int x, int y,
 			QRect const boundingRect = fontMetrics.boundingRect(QChar::fromLatin1('H'));
 			int const yOffset = (noteHeight - boundingRect.top() - boundingRect.bottom()) / 2;
 
-			if (textSize.width() < noteWidth - xOffset)
+			if (textSize.width() < noteWidth - xOffset - 1)
 			{
 				p.setPen(noteTextColor);
 				p.setFont(noteFont);
@@ -3504,7 +3504,7 @@ void PianoRoll::paintEvent(QPaintEvent * pe )
 			{
 				// small font sizes have 1 pixel offset instead of 2
 				auto zoomOffset = m_zoomYLevels[m_zoomingYModel.value()] > 1.0f ? 2 : 1;
-				QString noteString = getNoteString(key);
+				QString noteString = getNoteString(key, true);
 				QRect textRect(
 					m_whiteKeyWidth - boundingRect.width() - 2,
 					yb - m_keyLineHeight + zoomOffset,
