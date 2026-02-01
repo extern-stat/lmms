@@ -573,8 +573,8 @@ void ClipView::paintTextLabel(QString const & text, QPainter & painter)
 	labelFont.setHintingPreference( QFont::PreferFullHinting );
 	painter.setFont( labelFont );
 
-	const int textTop = BORDER_WIDTH + 1;
-	const int textLeft = BORDER_WIDTH + 3;
+	const int textTop = BORDER_WIDTH;
+	const int textLeft = BORDER_WIDTH + 2;
 
 	QFontMetrics fontMetrics(labelFont);
 	QString elidedClipName = fontMetrics.elidedText(text, Qt::ElideMiddle, width() - 2 * textLeft);
@@ -584,7 +584,7 @@ void ClipView::paintTextLabel(QString const & text, QPainter & painter)
 		elidedClipName = text.trimmed();
 	}
 
-	painter.fillRect(QRect(0, 0, fontMetrics.horizontalAdvance(elidedClipName) + 8, fontMetrics.height() + 2 * textTop), textBackgroundColor());
+	painter.fillRect(QRect(0, 0, fontMetrics.horizontalAdvance(elidedClipName) + 6, fontMetrics.height() + 2 * textTop), textBackgroundColor());
 
 	int const finalTextTop = textTop + fontMetrics.ascent();
 	painter.setPen(textShadowColor());
