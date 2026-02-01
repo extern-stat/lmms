@@ -166,7 +166,7 @@ public slots:
 
 
 protected:
-	static const int DEFAULT_PIXELS_PER_BAR = 128;
+	static const int DEFAULT_PIXELS_PER_BAR = 16;
 
 	TimePos m_currentPosition;
 

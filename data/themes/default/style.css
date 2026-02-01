@@ -414,12 +414,12 @@ lmms--gui--TrackContentWidget {
 	qproperty-darkerColor: #0C0E0F;
 	qproperty-lighterColor: #14151A;
 	qproperty-coarseGridColor: #3C444C;
-	qproperty-fineGridColor: #262B30;
+	qproperty-fineGridColor: #212427;
 	qproperty-horizontalColor: #3C444C;
 	qproperty-embossColor: rgba(0, 0, 0, 0);
 	
 	/* line widths */
-	qproperty-coarseGridWidth: 2;
+	qproperty-coarseGridWidth: 1;
 	qproperty-fineGridWidth: 1;
 	qproperty-horizontalWidth: 1;
 	qproperty-embossWidth: 0;
