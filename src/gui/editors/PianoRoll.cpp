@@ -5596,6 +5596,8 @@ void PianoRollWindow::saveSettings( QDomDocument & doc, QDomElement & de )
 		de.appendChild(markedSemiTonesRoot);
 	}
 
+	de.setAttribute("key", m_editor->m_keyModel.value());
+	de.setAttribute("scale", m_editor->m_scaleModel.value());
 	de.setAttribute("stopbehaviour", static_cast<int>(
 		Engine::getSong()->getTimeline(Song::PlayMode::MidiClip).stopBehaviour()));
 
@@ -5607,6 +5609,8 @@ void PianoRollWindow::saveSettings( QDomDocument & doc, QDomElement & de )
 
 void PianoRollWindow::loadSettings( const QDomElement & de )
 {
+	m_editor->m_keyModel.setValue(de.attribute("key").toInt());
+	m_editor->m_scaleModel.setValue(de.attribute("scale").toInt());
 	m_editor->loadGhostNotes( de.firstChildElement("ghostnotes") );
 	m_editor->loadMarkedSemiTones(de.firstChildElement("markedSemiTones"));
 
