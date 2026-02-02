@@ -213,7 +213,7 @@ lmms--gui--PianoRoll {
 
 	/* Text on the white piano keys */
 	qproperty-textColor: #000;
-	qproperty-textColorLight: #0bd556;
+	qproperty-textColorLight: #0bb74a;
 	qproperty-textShadow: #fff;
 }
 
