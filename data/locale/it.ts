@@ -11534,13 +11534,13 @@ Inserisci &quot;x&quot; se desideri lasciare il tasto disabilitato/non mappato.<
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="199"/>
-        <source>Open in piano-roll</source>
-        <translation>Apri nel piano-roll</translation>
+        <source>Open in piano roll</source>
+        <translation>Apri nel piano roll</translation>
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="204"/>
-        <source>Set as ghost in piano-roll</source>
-        <translation>Imposta come fantasma nel piano-roll</translation>
+        <source>Set as ghost in piano roll</source>
+        <translation>Imposta come fantasma nel piano roll</translation>
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="210"/>
@@ -12782,14 +12782,14 @@ Attenzione: questa operazione non può essere annullata.</translation>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5213"/>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5392"/>
-        <source>Piano-Roll - %1</source>
-        <translation>Piano-Roll - %1</translation>
+        <source>Piano Roll - %1</source>
+        <translation>Piano Roll - %1</translation>
     </message>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5220"/>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5397"/>
-        <source>Piano-Roll - no clip</source>
-        <translation>Piano-Roll - no clip</translation>
+        <source>Piano Roll - no clip</source>
+        <translation>Piano Roll - no clip</translation>
     </message>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5416"/>
@@ -14482,8 +14482,8 @@ Assicurati di avere almeno i permessi di lettura del file e prova di nuovo.</tra
     <name>lmms::gui::SongEditorWindow</name>
     <message>
         <location filename="../../src/gui/editors/SongEditor.cpp" line="923"/>
-        <source>Song-Editor</source>
-        <translation>Song-Editor</translation>
+        <source>Song Editor</source>
+        <translation>Song Editor</translation>
     </message>
     <message>
         <location filename="../../src/gui/editors/SongEditor.cpp" line="933"/>

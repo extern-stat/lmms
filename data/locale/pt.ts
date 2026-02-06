@@ -11529,13 +11529,13 @@ Enter &apos;x&apos; if you wish to leave the key disabled / not mapped.</source>
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="199"/>
-        <source>Open in piano-roll</source>
+        <source>Open in piano roll</source>
         <translation>Abrir no Editor de Notas MIDI</translation>
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="204"/>
-        <source>Set as ghost in piano-roll</source>
-        <translation>Definir como fantasma no piano-roll</translation>
+        <source>Set as ghost in piano roll</source>
+        <translation>Definir como fantasma no piano roll</translation>
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="210"/>
@@ -12778,14 +12778,14 @@ Aviso: Esta operação não pode ser desfeita.</translation>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5213"/>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5392"/>
-        <source>Piano-Roll - %1</source>
-        <translation>Piano-Roll - %1</translation>
+        <source>Piano Roll - %1</source>
+        <translation>Piano Roll - %1</translation>
     </message>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5220"/>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5397"/>
-        <source>Piano-Roll - no clip</source>
-        <translation>Piano-Roll - sem clipe</translation>
+        <source>Piano Roll - no clip</source>
+        <translation>Piano Roll - sem clipe</translation>
     </message>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5416"/>
@@ -14477,7 +14477,7 @@ Latency: %2 ms</source>
     <name>lmms::gui::SongEditorWindow</name>
     <message>
         <location filename="../../src/gui/editors/SongEditor.cpp" line="923"/>
-        <source>Song-Editor</source>
+        <source>Song Editor</source>
         <translation>Editor de Som</translation>
     </message>
     <message>

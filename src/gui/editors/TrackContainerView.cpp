@@ -467,7 +467,7 @@ TrackContainerView::scrollArea::scrollArea( TrackContainerView * _parent ) :
 
 void TrackContainerView::scrollArea::wheelEvent( QWheelEvent * _we )
 {
-	// always pass wheel-event to parent-widget (song-editor
+	// always pass wheel-event to parent-widget (song editor
 	// pattern-editor etc.) because they might want to use it for zooming
 	// or scrolling left/right if a modifier-key is pressed, otherwise
 	// they do not accept it and we pass it up to QScrollArea

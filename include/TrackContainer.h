@@ -1,5 +1,5 @@
 /*
- * TrackContainer.h - base-class for all track-containers like Song-Editor,
+ * TrackContainer.h - base-class for all track-containers like Song Editor,
  *                    Pattern Editor...
  *
  * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users.sourceforge.net>

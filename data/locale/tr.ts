@@ -11535,12 +11535,12 @@ Anahtarı devre dışı bırakmak / eşlenmemiş olarak bırakmak istiyorsanız 
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="199"/>
-        <source>Open in piano-roll</source>
+        <source>Open in piano roll</source>
         <translation>Piyano rulosunda aç</translation>
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="204"/>
-        <source>Set as ghost in piano-roll</source>
+        <source>Set as ghost in piano roll</source>
         <translation>Piyano rulosunda hayalet olarak ayarla</translation>
     </message>
     <message>
@@ -12784,13 +12784,13 @@ Uyarı: Bu işlem geri alınamaz.</translation>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5213"/>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5392"/>
-        <source>Piano-Roll - %1</source>
+        <source>Piano Roll - %1</source>
         <translation>Piyano Rulosu -%1</translation>
     </message>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5220"/>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5397"/>
-        <source>Piano-Roll - no clip</source>
+        <source>Piano Roll - no clip</source>
         <translation>Piyano Rulosu - desen yok</translation>
     </message>
     <message>
@@ -14484,7 +14484,7 @@ Gecikme: %2 ms</translation>
     <name>lmms::gui::SongEditorWindow</name>
     <message>
         <location filename="../../src/gui/editors/SongEditor.cpp" line="923"/>
-        <source>Song-Editor</source>
+        <source>Song Editor</source>
         <translation>Şarkı-Düzenleyici</translation>
     </message>
     <message>

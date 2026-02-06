@@ -834,7 +834,7 @@ void PianoRoll::setCurrentMidiClip( MidiClip* newMidiClip )
 		m_midiClip->disconnect(this);
 	}
 
-	// force the song-editor to stop playing if it played a MIDI clip before
+	// force the song editor to stop playing if it played a MIDI clip before
 	if (Engine::getSong()->playMode() == Song::PlayMode::MidiClip)
 	{
 		Engine::getSong()->playMidiClip( nullptr );
@@ -5472,14 +5472,14 @@ void PianoRollWindow::setCurrentMidiClip( MidiClip* clip )
 	if ( clip )
 	{
 		auto title = clip->name().isEmpty() ? clip->instrumentTrack()->name() : clip->name();
-		setWindowTitle(tr("Piano-Roll - %1").arg(title));
+		setWindowTitle(tr("Piano Roll - %1").arg(title));
 		m_fileToolsButton->setEnabled(true);
 		connect( clip->instrumentTrack(), SIGNAL(nameChanged()), this, SLOT(updateAfterMidiClipChange()));
 		connect( clip, SIGNAL(dataChanged()), this, SLOT(updateAfterMidiClipChange()));
 	}
 	else
 	{
-		setWindowTitle( tr( "Piano-Roll - no clip" ) );
+		setWindowTitle( tr( "Piano Roll - no clip" ) );
 		m_fileToolsButton->setEnabled(false);
 	}
 }
@@ -5715,12 +5715,12 @@ void PianoRollWindow::clipRenamed()
 		auto title = currentMidiClip()->name().isEmpty()
 			? currentMidiClip()->instrumentTrack()->name()
 			: currentMidiClip()->name();
-        setWindowTitle(tr("Piano-Roll - %1").arg(title));
+        setWindowTitle(tr("Piano Roll - %1").arg(title));
 		m_fileToolsButton->setEnabled(true);
 	}
 	else
 	{
-		setWindowTitle( tr( "Piano-Roll - no clip" ) );
+		setWindowTitle( tr( "Piano Roll - no clip" ) );
 		m_fileToolsButton->setEnabled(false);
 	}
 }

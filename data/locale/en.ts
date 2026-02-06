@@ -9571,12 +9571,12 @@ Please visit http://lmms.sf.net/wiki for documentation on LMMS.</source>
     <name>MidiClipView</name>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="143"/>
-        <source>Open in piano-roll</source>
+        <source>Open in piano roll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="149"/>
-        <source>Set as ghost in piano-roll</source>
+        <source>Set as ghost in piano roll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -10067,13 +10067,13 @@ Please visit http://lmms.sf.net/wiki for documentation on LMMS.</source>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5036"/>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5209"/>
-        <source>Piano-Roll - %1</source>
+        <source>Piano Roll - %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5043"/>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5214"/>
-        <source>Piano-Roll - no clip</source>
+        <source>Piano Roll - no clip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -10174,7 +10174,7 @@ Reason: &quot;%2&quot;</source>
     </message>
     <message>
         <location filename="../../src/gui/PluginBrowser.cpp" line="57"/>
-        <source>Drag an instrument into either the Song-Editor, the Beat+Bassline Editor or into an existing instrument track.</source>
+        <source>Drag an instrument into either the Song Editor, the Beat+Bassline Editor or into an existing instrument track.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -12912,7 +12912,7 @@ Latency: %2 ms</source>
     <name>SongEditorWindow</name>
     <message>
         <location filename="../../src/gui/editors/SongEditor.cpp" line="918"/>
-        <source>Song-Editor</source>
+        <source>Song Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

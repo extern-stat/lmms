@@ -929,7 +929,7 @@ SongEditorWindow::SongEditorWindow(Song* song) :
 	m_crtlAction( nullptr ),
 	m_snapSizeLabel( new QLabel( m_toolBar ) )
 {
-	setWindowTitle( tr( "Song-Editor" ) );
+	setWindowTitle( tr( "Song Editor" ) );
 	setWindowIcon( embed::getIconPixmap( "songeditor" ) );
 
 	setCentralWidget(m_editor);

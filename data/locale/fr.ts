@@ -11533,12 +11533,12 @@ Enter &apos;x&apos; if you wish to leave the key disabled / not mapped.</source>
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="199"/>
-        <source>Open in piano-roll</source>
+        <source>Open in piano roll</source>
         <translation>Ouvrir dans le piano virtuel</translation>
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="204"/>
-        <source>Set as ghost in piano-roll</source>
+        <source>Set as ghost in piano roll</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -12779,13 +12779,13 @@ Warning: This operation can not be undone.</source>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5213"/>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5392"/>
-        <source>Piano-Roll - %1</source>
+        <source>Piano Roll - %1</source>
         <translation>Piano virtuel - %1</translation>
     </message>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5220"/>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5397"/>
-        <source>Piano-Roll - no clip</source>
+        <source>Piano Roll - no clip</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -14479,7 +14479,7 @@ Veuillez vérifier que vous avez au moins les droits en lecture pour ce fichier 
     <name>lmms::gui::SongEditorWindow</name>
     <message>
         <location filename="../../src/gui/editors/SongEditor.cpp" line="923"/>
-        <source>Song-Editor</source>
+        <source>Song Editor</source>
         <translation>Éditeur de morceau</translation>
     </message>
     <message>

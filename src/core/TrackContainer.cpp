@@ -1,6 +1,6 @@
 /*
  * TrackContainer.cpp - implementation of base class for all trackcontainers
- *                      like Song-Editor, Pattern Editor...
+ *                      like Song Editor, Pattern Editor...
  *
  * Copyright (c) 2004-2014 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *

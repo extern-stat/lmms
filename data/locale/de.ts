@@ -8309,7 +8309,7 @@ Bitte stellen Sie sicher, dass Sie Schreibrechte sowohl auf die Datei als auch d
     <message>
         <location filename="../../src/gui/FileBrowser.cpp" line="640"/>
         <source>Song Editor</source>
-        <translation>Song-Editor</translation>
+        <translation>Song Editor</translation>
     </message>
     <message>
         <location filename="../../src/gui/FileBrowser.cpp" line="645"/>
@@ -8815,7 +8815,7 @@ Bitte stellen Sie sicher, dass Sie Schreibrechte sowohl auf die Datei als auch d
     <message>
         <location filename="../../src/gui/GuiApplication.cpp" line="163"/>
         <source>Preparing song editor</source>
-        <translation>Song-Editor vorbereiten</translation>
+        <translation>Song Editor vorbereiten</translation>
     </message>
     <message>
         <location filename="../../src/gui/GuiApplication.cpp" line="167"/>
@@ -8845,7 +8845,7 @@ Bitte stellen Sie sicher, dass Sie Schreibrechte sowohl auf die Datei als auch d
     <message>
         <location filename="../../src/gui/GuiApplication.cpp" line="187"/>
         <source>Preparing piano roll</source>
-        <translation>Piano-Roll vorbereiten</translation>
+        <translation>Piano Roll vorbereiten</translation>
     </message>
     <message>
         <location filename="../../src/gui/GuiApplication.cpp" line="191"/>
@@ -10727,7 +10727,7 @@ Bitte stellen Sie sicher, dass Sie Schreibrechte sowohl auf die Datei als auch d
         <location filename="../../src/gui/MainWindow.cpp" line="444"/>
         <location filename="../../src/gui/MainWindow.cpp" line="1049"/>
         <source>Song Editor</source>
-        <translation>Song-Editor</translation>
+        <translation>Song Editor</translation>
     </message>
     <message>
         <location filename="../../src/gui/MainWindow.cpp" line="449"/>
@@ -10739,7 +10739,7 @@ Bitte stellen Sie sicher, dass Sie Schreibrechte sowohl auf die Datei als auch d
         <location filename="../../src/gui/MainWindow.cpp" line="453"/>
         <location filename="../../src/gui/MainWindow.cpp" line="1057"/>
         <source>Piano Roll</source>
-        <translation>Piano-Roll</translation>
+        <translation>Piano Roll</translation>
     </message>
     <message>
         <location filename="../../src/gui/MainWindow.cpp" line="457"/>
@@ -10873,7 +10873,7 @@ Bitte besuchen Sie http://lmms.sf.net/wiki für Dokumentationen über LMMS.</tra
     <message>
         <location filename="../../src/gui/MainWindow.cpp" line="1104"/>
         <source>Enable note labels in piano roll</source>
-        <translation>Notenbeschriftung in Piano-Roll aktivieren</translation>
+        <translation>Notenbeschriftung in Piano Roll aktivieren</translation>
     </message>
     <message>
         <location filename="../../src/gui/MainWindow.cpp" line="1398"/>
@@ -11532,13 +11532,13 @@ Enter &apos;x&apos; if you wish to leave the key disabled / not mapped.</source>
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="199"/>
-        <source>Open in piano-roll</source>
-        <translation>Im Piano-Roll öffnen</translation>
+        <source>Open in piano roll</source>
+        <translation>Im Piano Roll öffnen</translation>
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="204"/>
-        <source>Set as ghost in piano-roll</source>
-        <translation>Als Geist im Piano-Roll setzen</translation>
+        <source>Set as ghost in piano roll</source>
+        <translation>Als Geist im Piano Roll setzen</translation>
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="210"/>
@@ -12781,14 +12781,14 @@ Achtung: Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5213"/>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5392"/>
-        <source>Piano-Roll - %1</source>
-        <translation>Piano-Roll – %1</translation>
+        <source>Piano Roll - %1</source>
+        <translation>Piano Roll – %1</translation>
     </message>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5220"/>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5397"/>
-        <source>Piano-Roll - no clip</source>
-        <translation>Piano-Roll – kein Clip</translation>
+        <source>Piano Roll - no clip</source>
+        <translation>Piano Roll – kein Clip</translation>
     </message>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5416"/>
@@ -12870,7 +12870,7 @@ Achtung: Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     <message>
         <location filename="../../src/gui/PluginBrowser.cpp" line="63"/>
         <source>Drag an instrument into either the Song Editor, the Pattern Editor or an existing instrument track.</source>
-        <translation>Ziehen Sie ein Instrument entweder in den Song-Editor, den Pattern-Editor oder einer existierenden Instrumentspur.</translation>
+        <translation>Ziehen Sie ein Instrument entweder in den Song Editor, den Pattern-Editor oder einer existierenden Instrumentspur.</translation>
     </message>
     <message>
         <location filename="../../src/gui/PluginBrowser.cpp" line="71"/>
@@ -13503,7 +13503,7 @@ Achtung: Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     <message>
         <location filename="../../src/gui/modals/SetupDialog.cpp" line="239"/>
         <source>Enable all note labels in piano roll</source>
-        <translation>Alle Notenbeschriftungen im Piano-Roll aktivieren</translation>
+        <translation>Alle Notenbeschriftungen im Piano Roll aktivieren</translation>
     </message>
     <message>
         <location filename="../../src/gui/modals/SetupDialog.cpp" line="241"/>
@@ -13619,7 +13619,7 @@ Achtung: Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     <message>
         <location filename="../../src/gui/modals/SetupDialog.cpp" line="411"/>
         <source>Smooth scroll in song editor</source>
-        <translation>Weiches Scrollen im Song-Editor</translation>
+        <translation>Weiches Scrollen im Song Editor</translation>
     </message>
     <message>
         <location filename="../../src/gui/modals/SetupDialog.cpp" line="413"/>
@@ -13721,7 +13721,7 @@ Achtung: Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     <message>
         <location filename="../../src/gui/modals/SetupDialog.cpp" line="757"/>
         <source>Auto-quantize notes in Piano Roll</source>
-        <translation>Noten im Piano-Roll automatisch quantisieren</translation>
+        <translation>Noten im Piano Roll automatisch quantisieren</translation>
     </message>
     <message>
         <location filename="../../src/gui/modals/SetupDialog.cpp" line="761"/>
@@ -14481,8 +14481,8 @@ Latenz: %2 ms</translation>
     <name>lmms::gui::SongEditorWindow</name>
     <message>
         <location filename="../../src/gui/editors/SongEditor.cpp" line="923"/>
-        <source>Song-Editor</source>
-        <translation>Song-Editor</translation>
+        <source>Song Editor</source>
+        <translation>Song Editor</translation>
     </message>
     <message>
         <location filename="../../src/gui/editors/SongEditor.cpp" line="933"/>

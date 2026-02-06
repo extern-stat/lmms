@@ -8308,7 +8308,7 @@ Zorg ervoor dat u schrijfbevoegdheid heeft voor het bestand en voor de map die h
     <message>
         <location filename="../../src/gui/FileBrowser.cpp" line="640"/>
         <source>Song Editor</source>
-        <translation>Song-editor</translation>
+        <translation>Song editor</translation>
     </message>
     <message>
         <location filename="../../src/gui/FileBrowser.cpp" line="645"/>
@@ -8814,7 +8814,7 @@ Zorg ervoor dat u schrijfbevoegdheid heeft voor het bestand en voor de map die h
     <message>
         <location filename="../../src/gui/GuiApplication.cpp" line="163"/>
         <source>Preparing song editor</source>
-        <translation>Song-editor voorbereiden</translation>
+        <translation>Song editor voorbereiden</translation>
     </message>
     <message>
         <location filename="../../src/gui/GuiApplication.cpp" line="167"/>
@@ -8844,7 +8844,7 @@ Zorg ervoor dat u schrijfbevoegdheid heeft voor het bestand en voor de map die h
     <message>
         <location filename="../../src/gui/GuiApplication.cpp" line="187"/>
         <source>Preparing piano roll</source>
-        <translation>Piano-roll voorbereiden</translation>
+        <translation>Piano roll voorbereiden</translation>
     </message>
     <message>
         <location filename="../../src/gui/GuiApplication.cpp" line="191"/>
@@ -10726,7 +10726,7 @@ Zorg ervoor dat u schrijfbevoegdheid heeft voor het bestand en voor de map die h
         <location filename="../../src/gui/MainWindow.cpp" line="444"/>
         <location filename="../../src/gui/MainWindow.cpp" line="1049"/>
         <source>Song Editor</source>
-        <translation>Song-editor</translation>
+        <translation>Song editor</translation>
     </message>
     <message>
         <location filename="../../src/gui/MainWindow.cpp" line="449"/>
@@ -10738,7 +10738,7 @@ Zorg ervoor dat u schrijfbevoegdheid heeft voor het bestand en voor de map die h
         <location filename="../../src/gui/MainWindow.cpp" line="453"/>
         <location filename="../../src/gui/MainWindow.cpp" line="1057"/>
         <source>Piano Roll</source>
-        <translation>Piano-roll</translation>
+        <translation>Piano roll</translation>
     </message>
     <message>
         <location filename="../../src/gui/MainWindow.cpp" line="457"/>
@@ -10872,7 +10872,7 @@ Bezoek http://lmms.sf.net/wiki voor documentatie over LMMS.</translation>
     <message>
         <location filename="../../src/gui/MainWindow.cpp" line="1104"/>
         <source>Enable note labels in piano roll</source>
-        <translation>Nootlabels in piano-roll inschakelen</translation>
+        <translation>Nootlabels in piano roll inschakelen</translation>
     </message>
     <message>
         <location filename="../../src/gui/MainWindow.cpp" line="1398"/>
@@ -11529,13 +11529,13 @@ Enter &apos;x&apos; if you wish to leave the key disabled / not mapped.</source>
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="199"/>
-        <source>Open in piano-roll</source>
-        <translation>In piano-roll openen</translation>
+        <source>Open in piano roll</source>
+        <translation>In piano roll openen</translation>
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="204"/>
-        <source>Set as ghost in piano-roll</source>
-        <translation>Als ghost instellen in piano-roll</translation>
+        <source>Set as ghost in piano roll</source>
+        <translation>Als ghost instellen in piano roll</translation>
     </message>
     <message>
         <location filename="../../src/gui/clips/MidiClipView.cpp" line="210"/>
@@ -12775,14 +12775,14 @@ Warning: This operation can not be undone.</source>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5213"/>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5392"/>
-        <source>Piano-Roll - %1</source>
-        <translation>Piano-roll - %1</translation>
+        <source>Piano Roll - %1</source>
+        <translation>Piano roll - %1</translation>
     </message>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5220"/>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5397"/>
-        <source>Piano-Roll - no clip</source>
-        <translation>Piano-roll - geen patroon</translation>
+        <source>Piano Roll - no clip</source>
+        <translation>Piano roll - geen patroon</translation>
     </message>
     <message>
         <location filename="../../src/gui/editors/PianoRoll.cpp" line="5416"/>
@@ -14475,8 +14475,8 @@ Verzeker u ervan dat u ten minste leesrechten heeft voor het bestand en probeer 
     <name>lmms::gui::SongEditorWindow</name>
     <message>
         <location filename="../../src/gui/editors/SongEditor.cpp" line="923"/>
-        <source>Song-Editor</source>
-        <translation>Song-editor</translation>
+        <source>Song Editor</source>
+        <translation>Song editor</translation>
     </message>
     <message>
         <location filename="../../src/gui/editors/SongEditor.cpp" line="933"/>

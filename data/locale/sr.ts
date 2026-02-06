@@ -3664,7 +3664,7 @@ Please make sure you have write-access to the file and try again.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>By pressing this button, you can show or hide the Song-Editor. With the help of the Song-Editor you can edit song-playlist and specify when which track should be played. You can also insert and move samples (e.g. rap samples) directly into the playlist.</source>
+        <source>By pressing this button, you can show or hide the Song Editor. With the help of the Song Editor you can edit song-playlist and specify when which track should be played. You can also insert and move samples (e.g. rap samples) directly into the playlist.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3680,7 +3680,7 @@ Please make sure you have write-access to the file and try again.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Click here to show or hide the Piano-Roll. With the help of the Piano-Roll you can edit melodies in an easy way.</source>
+        <source>Click here to show or hide the Piano Roll. With the help of the Piano Roll you can edit melodies in an easy way.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3885,7 +3885,7 @@ Please visit http://lmms.sf.net/wiki for documentation on LMMS.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show/hide Song-Editor</source>
+        <source>Show/hide Song Editor</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3893,7 +3893,7 @@ Please visit http://lmms.sf.net/wiki for documentation on LMMS.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show/hide Piano-Roll</source>
+        <source>Show/hide Piano Roll</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -5186,7 +5186,7 @@ PM means phase modulation: Oscillator 3&apos;s phase is modulated by oscillator 
 <context>
     <name>MidiClipView</name>
     <message>
-        <source>Open in piano-roll</source>
+        <source>Open in piano roll</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -5536,11 +5536,11 @@ PM means phase modulation: Oscillator 3&apos;s phase is modulated by oscillator 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Piano-Roll - %1</source>
+        <source>Piano Roll - %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Piano-Roll - no clip</source>
+        <source>Piano Roll - no clip</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -5586,7 +5586,7 @@ Reason: &quot;%2&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Drag an instrument into either the Song-Editor, the Beat+Bassline Editor or into an existing instrument track.</source>
+        <source>Drag an instrument into either the Song Editor, the Beat+Bassline Editor or into an existing instrument track.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -6324,7 +6324,7 @@ Remember to also save your project manually.</source>
 <context>
     <name>SongEditorWindow</name>
     <message>
-        <source>Song-Editor</source>
+        <source>Song Editor</source>
         <translation type="unfinished"/>
     </message>
     <message>

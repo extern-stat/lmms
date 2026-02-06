@@ -4740,12 +4740,12 @@ Please make sure you have write-access to the file and try again.</source>
     </message>
     <message>
         <location filename="src/gui/MainWindow.cpp" line="467"/>
-        <source>Show/hide Song-Editor</source>
+        <source>Show/hide Song Editor</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="src/gui/MainWindow.cpp" line="472"/>
-        <source>By pressing this button, you can show or hide the Song-Editor. With the help of the Song-Editor you can edit song-playlist and specify when which track should be played. You can also insert and move samples (e.g. rap samples) directly into the playlist.</source>
+        <source>By pressing this button, you can show or hide the Song Editor. With the help of the Song Editor you can edit song-playlist and specify when which track should be played. You can also insert and move samples (e.g. rap samples) directly into the playlist.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4760,12 +4760,12 @@ Please make sure you have write-access to the file and try again.</source>
     </message>
     <message>
         <location filename="src/gui/MainWindow.cpp" line="498"/>
-        <source>Show/hide Piano-Roll</source>
+        <source>Show/hide Piano Roll</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="src/gui/MainWindow.cpp" line="504"/>
-        <source>Click here to show or hide the Piano-Roll. With the help of the Piano-Roll you can edit melodies in an easy way.</source>
+        <source>Click here to show or hide the Piano Roll. With the help of the Piano Roll you can edit melodies in an easy way.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -6584,7 +6584,7 @@ PM means phase modulation: Oscillator 3&apos;s phase is modulated by oscillator 
     </message>
     <message>
         <location filename="src/tracks/MidiClip.cpp" line="777"/>
-        <source>Open in piano-roll</source>
+        <source>Open in piano roll</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -7003,12 +7003,12 @@ PM means phase modulation: Oscillator 3&apos;s phase is modulated by oscillator 
     </message>
     <message>
         <location filename="src/gui/editors/PianoRoll.cpp" line="4242"/>
-        <source>Piano-Roll - %1</source>
+        <source>Piano Roll - %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="src/gui/editors/PianoRoll.cpp" line="4246"/>
-        <source>Piano-Roll - no clip</source>
+        <source>Piano Roll - no clip</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -7058,7 +7058,7 @@ Reason: &quot;%2&quot;</source>
     </message>
     <message>
         <location filename="src/gui/PluginBrowser.cpp" line="67"/>
-        <source>Drag an instrument into either the Song-Editor, the Beat+Bassline Editor or into an existing instrument track.</source>
+        <source>Drag an instrument into either the Song Editor, the Beat+Bassline Editor or into an existing instrument track.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -8002,7 +8002,7 @@ Remember to also save your project manually.</source>
     <name>SongEditorWindow</name>
     <message>
         <location filename="src/gui/editors/SongEditor.cpp" line="620"/>
-        <source>Song-Editor</source>
+        <source>Song Editor</source>
         <translation type="unfinished"/>
     </message>
     <message>
