@@ -2424,6 +2424,11 @@ LRESULT CALLBACK RemoteVstPlugin::wndProc( HWND hwnd, UINT uMsg,
 		__plugin->hideEditor();
 		return 0;
 	}
+	else if (uMsg == WM_MOUSEACTIVATE)
+	{
+		__plugin->sendMessage(IdClickUI);
+		return 0;
+	}
 
 	return DefWindowProc( hwnd, uMsg, wParam, lParam );
 }

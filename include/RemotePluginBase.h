@@ -346,7 +346,8 @@ enum RemoteMessageIDs
 	IdLoadPresetFile,
 	IdDebugMessage,
 	IdIdle,
-	IdUserBase = 64
+	IdClickUI,
+	IdUserBase = 64,
 } ;
 
 
