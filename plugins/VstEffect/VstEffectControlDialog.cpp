@@ -199,9 +199,6 @@ VstEffectControlDialog::VstEffectControlDialog( VstEffectControls * _ctl ) :
 		l->addItem( new QSpacerItem( newSize - 20, 30, QSizePolicy::Fixed,
 						QSizePolicy::Fixed ), 1, 0 );
 		l->addWidget( resize, 2, 0, 1, 1, Qt::AlignCenter );
-		if (m_pluginWidget) {
-			l->addWidget( m_pluginWidget, 3, 0, 1, 1, Qt::AlignCenter );
-		}
 		l->setRowStretch( 5, 1 );
 		l->setColumnStretch( 1, 1 );
 
@@ -214,8 +211,11 @@ VstEffectControlDialog::VstEffectControlDialog( VstEffectControls * _ctl ) :
 		tb->addWidget( m_openPresetButton );
 		tb->addWidget( m_savePresetButton );
 		tb->addWidget( m_managePluginButton );
-		tb->addWidget( btn );
 		tb->addWidget(space1);
+
+		if (m_pluginWidget) {
+			l->addWidget( m_pluginWidget, 3, 0, 1, 1, Qt::AlignCenter );
+		}
 
 		tbLabel = new QLabel( tr( "Effect by: " ), this );
 		tbLabel->setFont(adjustedToPixelSize(f, SMALL_FONT_SIZE));
