@@ -347,10 +347,11 @@ void VestigeInstrument::loadFile( const QString & _file )
 
 	m_pluginMutex.unlock();
 
-	// if the same is loaded don't load again (for preview)
-	if (instrumentTrack() != nullptr && instrumentTrack()->isPreviewMode() &&
-			m_pluginDLL == PathUtil::toShortestRelative( _file ))
+	// Don't load for preview
+	if (instrumentTrack() != nullptr && instrumentTrack()->isPreviewMode())
+	{
 		return;
+	}
 
 	if ( m_plugin != nullptr )
 	{
