@@ -465,6 +465,8 @@ void ClipView::dropEvent( QDropEvent * de )
 		return;
 	}
 
+	getTrackView()->getTrack()->addJournalCheckPoint();
+
 	// Copy state into existing clip
 	DataFile dataFile( value.toUtf8() );
 	TimePos pos = m_clip->startPosition();
