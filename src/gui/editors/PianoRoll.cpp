@@ -493,9 +493,16 @@ void PianoRoll::changeNoteEditMode( int i )
 	repaint();
 }
 
+// TODO: Find a better way to do this
+bool blockMarkSemiToneCalls = false;
 
 void PianoRoll::markSemiTone(SemiToneMarkerAction i, bool fromMenu)
 {
+	if (blockMarkSemiToneCalls)
+	{
+		return;
+	}
+
 	const int key = fromMenu
 		? m_pianoKeySelected
 		: m_keyModel.value() - 1;
@@ -551,6 +558,9 @@ void PianoRoll::markSemiTone(SemiToneMarkerAction i, bool fromMenu)
 		case SemiToneMarkerAction::MarkCurrentScale:
 			chord = & InstrumentFunctionNoteStacking::ChordTable::getInstance()
 					.getScaleByName( m_scaleModel.currentText() );
+			blockMarkSemiToneCalls = true;
+			m_keyModel.setValue(key % 12 + 1, true);
+			blockMarkSemiToneCalls = false;
 		case SemiToneMarkerAction::MarkCurrentChord:
 		{
 			if( ! chord )
@@ -586,13 +596,21 @@ void PianoRoll::markSemiTone(SemiToneMarkerAction i, bool fromMenu)
 			selectNotesOnKey();
 			break;
 		}
-		default:
-			;
 	}
 
 	std::sort( m_markedSemiTones.begin(), m_markedSemiTones.end(), std::greater<int>() );
 	QList<int>::iterator new_end = std::unique( m_markedSemiTones.begin(), m_markedSemiTones.end() );
 	m_markedSemiTones.erase( new_end, m_markedSemiTones.end() );
+
+	m_markedSemiTones.removeOne(128);
+
+	if (m_markedSemiTones.empty())
+	{
+		blockMarkSemiToneCalls = true;
+		m_keyModel.setValue(0, true);
+		blockMarkSemiToneCalls = false;
+	}
+
 	// until we move the mouse the window won't update, force redraw
 	update();
 }
