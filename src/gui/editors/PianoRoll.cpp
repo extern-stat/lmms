@@ -3404,11 +3404,13 @@ void PianoRoll::paintEvent(QPaintEvent * pe )
 		// If we're over 100% zoom, we allow all quantization level grids
 		if (m_zoomingModel.value() <= m_zoomingModel.findText("100%"))
 		{
+			// TODO: Rework to make more dynamic
+
 			// we're under 100% zoom
-			// allow quantization grid up to 1/24 for triplets
-			if (q % 3 != 0 && q < 8) { q = 8; }
-			// allow quantization grid up to 1/32 for normal notes
-			else if (q < 6) { q = 6; }
+			// allow quantization grid up to 1/48 for triplets
+			if (q % 3 != 0 && q < 4) { q = 4; }
+			// allow quantization grid up to 1/64 for normal notes
+			else if (q < 3) { q = 3; }
 		}
     
 		p.setPen(m_lineColor);
