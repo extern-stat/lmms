@@ -145,7 +145,7 @@ std::array<PianoRoll::KeyType, 12> PianoRoll::prKeyOrder
 const int DEFAULT_PR_PPB = DEFAULT_CELL_WIDTH * DefaultStepsPerBar;
 
 const std::vector<float> PianoRoll::m_zoomLevels =
-		{0.125f, 0.25f, 0.5f, 1.0f, 1.5f, 2.0f, 4.0f, 8.0f};
+		{0.125f, 0.25f, 0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 2.0f, 4.0f, 8.0f};
 
 const std::vector<float> PianoRoll::m_zoomYLevels =
 		{0.25f, 0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 4.0f};
@@ -3402,7 +3402,7 @@ void PianoRoll::paintEvent(QPaintEvent * pe )
 
 		// draw vertical quantization lines
 		// If we're over 100% zoom, we allow all quantization level grids
-		if (m_zoomingModel.value() <= 3)
+		if (m_zoomingModel.value() <= m_zoomingModel.findText("100%"))
 		{
 			// we're under 100% zoom
 			// allow quantization grid up to 1/24 for triplets
