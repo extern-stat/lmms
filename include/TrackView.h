@@ -48,12 +48,13 @@ class FadeButton;
 class TrackContainerView;
 
 
-const int DEFAULT_SETTINGS_WIDGET_WIDTH = 260;
+const int DEFAULT_SETTINGS_WIDGET_WIDTH = 224;
 const int TRACK_OP_WIDTH = 78;
 // This shaves 150-ish pixels off track buttons,
 // ruled from config: ui.compacttrackbuttons
 const int DEFAULT_SETTINGS_WIDGET_WIDTH_COMPACT = 136;
 const int TRACK_OP_WIDTH_COMPACT = TRACK_OP_WIDTH;
+const int TRACK_MIXER_CHANNEL_WIDTH = 36;
 
 
 class TrackView : public QWidget, public ModelView, public JournallingObject

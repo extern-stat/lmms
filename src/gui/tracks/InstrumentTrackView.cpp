@@ -79,7 +79,6 @@ InstrumentTrackView::InstrumentTrackView( InstrumentTrack * _it, TrackContainerV
 			this, SLOT(handleConfigChange(QString,QString,QString)));
 
 	m_mixerChannelNumber = new MixerChannelLcdSpinBox(2, getTrackSettingsWidget(), tr("Mixer channel"), this);
-	m_mixerChannelNumber->show();
 
 	m_volumeKnob = new Knob(KnobType::Small17, tr("VOL"), getTrackSettingsWidget(), Knob::LabelRendering::LegacyFixedFontSize, tr("VOL"));
 	m_volumeKnob->setVolumeKnob( true );
@@ -148,7 +147,17 @@ InstrumentTrackView::InstrumentTrackView( InstrumentTrack * _it, TrackContainerV
 	layout->setContentsMargins(0, 0, 0, 0);
 	layout->setSpacing(0);
 	layout->addWidget(m_tlb);
-	layout->addWidget(m_mixerChannelNumber);
+
+	if (ConfigManager::inst()->value("app", "showtrackmixerchannel").toInt())
+	{
+		m_mixerChannelNumber->show();
+		layout->addWidget(m_mixerChannelNumber);
+	}
+	else
+	{
+		m_mixerChannelNumber->hide();
+	}
+
 	layout->addWidget(m_activityIndicator);
 	layout->addWidget(m_volumeKnob);
 	layout->addWidget(m_panningKnob);

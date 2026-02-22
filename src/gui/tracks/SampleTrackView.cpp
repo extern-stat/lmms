@@ -65,7 +65,6 @@ SampleTrackView::SampleTrackView( SampleTrack * _t, TrackContainerView* tcv ) :
 	m_tlb->show();
 
 	m_mixerChannelNumber = new MixerChannelLcdSpinBox(2, getTrackSettingsWidget(), tr("Mixer channel"), this);
-	m_mixerChannelNumber->show();
 
 	m_volumeKnob = new Knob(KnobType::Small17, tr("VOL"), getTrackSettingsWidget(), Knob::LabelRendering::LegacyFixedFontSize, tr("Track volume"));
 	m_volumeKnob->setVolumeKnob( true );
@@ -93,7 +92,17 @@ SampleTrackView::SampleTrackView( SampleTrack * _t, TrackContainerView* tcv ) :
 	layout->setContentsMargins(0, 0, 0, 0);
 	layout->setSpacing(0);
 	layout->addWidget(m_tlb);
-	layout->addWidget(m_mixerChannelNumber);
+
+	if (ConfigManager::inst()->value("app", "showtrackmixerchannel").toInt())
+	{
+		m_mixerChannelNumber->show();
+		layout->addWidget(m_mixerChannelNumber);
+	}
+	else
+	{
+		m_mixerChannelNumber->hide();
+	}
+
 	layout->addWidget(m_activityIndicator);
 	layout->addWidget(m_volumeKnob);
 	layout->addWidget(m_panningKnob);
@@ -206,7 +215,9 @@ void SampleTrackView::dropEvent(QDropEvent *de)
 	{
 		int trackHeadWidth = ConfigManager::inst()->value("ui", "compacttrackbuttons").toInt()==1
 				? DEFAULT_SETTINGS_WIDGET_WIDTH_COMPACT + TRACK_OP_WIDTH_COMPACT
-				: DEFAULT_SETTINGS_WIDGET_WIDTH + TRACK_OP_WIDTH;
+				: DEFAULT_SETTINGS_WIDGET_WIDTH + TRACK_OP_WIDTH
+				+ (ConfigManager::inst()->value("ui", "showtrackmixerchannel").toInt()
+				? TRACK_MIXER_CHANNEL_WIDTH : 0);
 
 		const int deX = position(de).x();
 		int xPos = deX < trackHeadWidth

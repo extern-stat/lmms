@@ -115,6 +115,7 @@ private:
 	bool m_tooltips;
 	bool m_displayWaveform;
 	bool m_printNoteLabels;
+	bool m_showTrackMixerChannel;
 	bool m_showFaderTicks;
 	bool m_compactTrackButtons;
 	bool m_oneInstrumentTrackWindow;

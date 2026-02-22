@@ -97,6 +97,8 @@ SetupDialog::SetupDialog(ConfigTab tab_to_open) :
 			"ui", "displaywaveform").toInt()),
 	m_printNoteLabels(ConfigManager::inst()->value(
 			"ui", "printnotelabels").toInt()),
+	m_showTrackMixerChannel(ConfigManager::inst()->value(
+			"ui", "showtrackmixerchannel", "1").toInt()),
 	m_showFaderTicks(ConfigManager::inst()->value(
 			"ui", "showfaderticks").toInt()),
 	m_compactTrackButtons(ConfigManager::inst()->value(
@@ -240,6 +242,8 @@ SetupDialog::SetupDialog(ConfigTab tab_to_open) :
 		&m_displayWaveform, true);
 	addCheckBox(tr("Enable all note labels in piano roll"), guiGroupBox, guiGroupLayout,
 		&m_printNoteLabels, false);
+	addCheckBox(tr("Show mixer channel on tracks"), guiGroupBox, guiGroupLayout,
+		&m_showTrackMixerChannel, true);
 	addCheckBox(tr("Show fader ticks"), guiGroupBox, guiGroupLayout,
 		&m_showFaderTicks, false);
 	addCheckBox(tr("Enable compact track buttons"), guiGroupBox, guiGroupLayout,
@@ -966,6 +970,8 @@ void SetupDialog::accept()
 					QString::number(m_displayWaveform));
 	ConfigManager::inst()->setValue("ui", "printnotelabels",
 					QString::number(m_printNoteLabels));
+	ConfigManager::inst()->setValue("ui", "showtrackmixerchannel",
+					QString::number(m_showTrackMixerChannel));
 	ConfigManager::inst()->setValue("ui", "showfaderticks",
 					QString::number(m_showFaderTicks));
 	ConfigManager::inst()->setValue("ui", "compacttrackbuttons",

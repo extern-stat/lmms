@@ -49,9 +49,11 @@ namespace lmms::gui
 PatternEditor::PatternEditor(PatternStore* ps) :
 	TrackContainerView(ps),
 	m_ps(ps),
-	m_trackHeadWidth(ConfigManager::inst()->value("ui", "compacttrackbuttons").toInt() == 1
+	m_trackHeadWidth((ConfigManager::inst()->value("ui", "compacttrackbuttons").toInt() == 1
 		? DEFAULT_SETTINGS_WIDGET_WIDTH_COMPACT + TRACK_OP_WIDTH_COMPACT
-		: DEFAULT_SETTINGS_WIDGET_WIDTH + TRACK_OP_WIDTH),
+		: DEFAULT_SETTINGS_WIDGET_WIDTH + TRACK_OP_WIDTH)
+		+ (ConfigManager::inst()->value("ui", "showtrackmixerchannel").toInt()
+		? TRACK_MIXER_CHANNEL_WIDTH : 0)),
 	m_maxClipLength(TimePos::ticksPerBar())
 {
 	setModel(ps);
@@ -287,14 +289,19 @@ PatternEditorWindow::PatternEditorWindow(PatternStore* ps) :
 	connect(m_toolBar, SIGNAL(dropped(QDropEvent*)), m_editor, SLOT(dropEvent(QDropEvent*)));
 
 	// TODO: Use style sheet
+	int minWidth = (ConfigManager::inst()->value("ui", "showtrackmixerchannel").toInt()
+		? TRACK_MIXER_CHANNEL_WIDTH : 0);
+
 	if (ConfigManager::inst()->value("ui", "compacttrackbuttons").toInt())
 	{
-		setMinimumWidth(TRACK_OP_WIDTH_COMPACT + DEFAULT_SETTINGS_WIDGET_WIDTH_COMPACT + 2 * ClipView::BORDER_WIDTH + 384);
+		minWidth += TRACK_OP_WIDTH_COMPACT + DEFAULT_SETTINGS_WIDGET_WIDTH_COMPACT + 2 * ClipView::BORDER_WIDTH + 384;
 	}
 	else
 	{
-		setMinimumWidth(TRACK_OP_WIDTH + DEFAULT_SETTINGS_WIDGET_WIDTH + 2 * ClipView::BORDER_WIDTH + 384);
+		minWidth += TRACK_OP_WIDTH + DEFAULT_SETTINGS_WIDGET_WIDTH + 2 * ClipView::BORDER_WIDTH + 384;
 	}
+
+	setMinimumWidth(minWidth);
 
 	m_playAction->setToolTip(tr("Play/pause current pattern (Space)"));
 	m_stopAction->setToolTip(tr("Stop playback of current pattern (Space)"));
