@@ -91,6 +91,7 @@ TrackOperationsWidget::TrackOperationsWidget( TrackView * parent ) :
 	m_trackOps->setFocusPolicy( Qt::NoFocus );
 	m_trackOps->setMenu( toMenu );
 	m_trackOps->setToolTip(tr("Actions"));
+	m_trackOps->setObjectName("btn-actions");
 	m_trackOps->setCursor(Qt::PointingHandCursor);
 
 	m_muteBtn = new AutomatableButton(operationsWidget, tr("Mute"));

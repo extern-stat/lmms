@@ -428,6 +428,12 @@ lmms--gui--TrackContentWidget {
 	qproperty-embossOffset: 0;
 }
 
+QPushButton#btn-actions {
+    background: none;
+    border-color: transparent;
+    margin-right: 4px;
+}
+
 /* 20px = 1px border + 2px padding + 14px icon + 2px padding + 1px border */
 QPushButton#btn-mute,
 QPushButton#btn-mute-inv,
