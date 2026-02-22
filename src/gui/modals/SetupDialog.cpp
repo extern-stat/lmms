@@ -211,15 +211,15 @@ SetupDialog::SetupDialog(ConfigTab tab_to_open) :
 	generalControlsLayout->setSpacing(10);
 	generalControlsLayout->setContentsMargins(0, 0, 0, 0);
 
-	auto addCheckBox = [&](const QString& ledText, QWidget* parent, QBoxLayout * layout,
-									  bool initialState, const char* toggledSlot, bool showRestartWarning) -> QCheckBox * {
+	auto addCheckBox = [&](const QString& ledText, QWidget* parent, QBoxLayout* layout,
+									bool* boundVariable, bool showRestartWarning) -> QCheckBox* {
 		auto checkBox = new QCheckBox(ledText, parent);
-		checkBox->setChecked(initialState);
-		connect(checkBox, SIGNAL(toggled(bool)), this, toggledSlot);
+		checkBox->setChecked(*boundVariable);
+		connect(checkBox, &QCheckBox::toggled, this, [=](bool enabled) { *boundVariable = enabled; });
 
 		if (showRestartWarning)
 		{
-			connect(checkBox, SIGNAL(toggled(bool)), this, SLOT(showRestartWarning()));
+			connect(checkBox, &QCheckBox::toggled, this, &this->showRestartWarning);
 		}
 
 		if (layout)
@@ -235,27 +235,27 @@ SetupDialog::SetupDialog(ConfigTab tab_to_open) :
 	QVBoxLayout * guiGroupLayout = new QVBoxLayout(guiGroupBox);
 
 	addCheckBox(tr("Enable tooltips"), guiGroupBox, guiGroupLayout,
-		m_tooltips, SLOT(toggleTooltips(bool)), true);
+		&m_tooltips, true);
 	addCheckBox(tr("Enable master oscilloscope by default"), guiGroupBox, guiGroupLayout,
-		m_displayWaveform, SLOT(toggleDisplayWaveform(bool)), true);
+		&m_displayWaveform, true);
 	addCheckBox(tr("Enable all note labels in piano roll"), guiGroupBox, guiGroupLayout,
-		m_printNoteLabels, SLOT(toggleNoteLabels(bool)), false);
+		&m_printNoteLabels, false);
 	addCheckBox(tr("Show fader ticks"), guiGroupBox, guiGroupLayout,
-		m_showFaderTicks, SLOT(toggleShowFaderTicks(bool)), false);
+		&m_showFaderTicks, false);
 	addCheckBox(tr("Enable compact track buttons"), guiGroupBox, guiGroupLayout,
-		m_compactTrackButtons, SLOT(toggleCompactTrackButtons(bool)), true);
+		&m_compactTrackButtons, true);
 	addCheckBox(tr("Enable one instrument-track-window mode"), guiGroupBox, guiGroupLayout,
-		m_oneInstrumentTrackWindow, SLOT(toggleOneInstrumentTrackWindow(bool)), true);
+		&m_oneInstrumentTrackWindow, true);
 	addCheckBox(tr("Show sidebar on the right-hand side"), guiGroupBox, guiGroupLayout,
-		m_sideBarOnRight, SLOT(toggleSideBarOnRight(bool)), true);
+		&m_sideBarOnRight, true);
 	addCheckBox(tr("Let sample previews continue when mouse is released"), guiGroupBox, guiGroupLayout,
-		m_letPreviewsFinish, SLOT(toggleLetPreviewsFinish(bool)), false);
+		&m_letPreviewsFinish, false);
 	addCheckBox(tr("Mute automation tracks during solo"), guiGroupBox, guiGroupLayout,
-		m_soloLegacyBehavior, SLOT(toggleSoloLegacyBehavior(bool)), false);
+		&m_soloLegacyBehavior, false);
 	addCheckBox(tr("Show warning when deleting tracks"), guiGroupBox, guiGroupLayout,
-		m_trackDeletionWarning, SLOT(toggleTrackDeletionWarning(bool)), false);
+		&m_trackDeletionWarning, false);
 	addCheckBox(tr("Show warning when deleting a mixer channel that is in use"), guiGroupBox, guiGroupLayout,
-		m_mixerChannelDeletionWarning,	SLOT(toggleMixerChannelDeletionWarning(bool)), false);
+		&m_mixerChannelDeletionWarning, false);
 
 	m_loopMarkerComboBox = new QComboBox{guiGroupBox};
 
@@ -290,11 +290,11 @@ SetupDialog::SetupDialog(ConfigTab tab_to_open) :
 	QVBoxLayout * projectsGroupLayout = new QVBoxLayout(projectsGroupBox);
 
 	addCheckBox(tr("Compress project files by default"), projectsGroupBox, projectsGroupLayout,
-		m_MMPZ, SLOT(toggleMMPZ(bool)), true);
+		&m_MMPZ, true);
 	addCheckBox(tr("Create a backup file when saving a project"), projectsGroupBox, projectsGroupLayout,
-		m_disableBackup, SLOT(toggleDisableBackup(bool)), false);
+		&m_disableBackup, false);
 	addCheckBox(tr("Reopen last project on startup"), projectsGroupBox, projectsGroupLayout,
-		m_openLastProject, SLOT(toggleOpenLastProject(bool)), false);
+		&m_openLastProject, false);
 
 	generalControlsLayout->addWidget(projectsGroupBox);
 
@@ -408,10 +408,10 @@ SetupDialog::SetupDialog(ConfigTab tab_to_open) :
 	autoSaveLayout->addWidget(m_saveIntervalLbl);
 
 	m_autoSave = addCheckBox(tr("Enable autosave"), autoSaveBox, autoSaveLayout,
-		m_enableAutoSave, SLOT(toggleAutoSave(bool)), false);
+		&m_enableAutoSave, false);
 
 	m_runningAutoSave = addCheckBox(tr("Allow autosave while playing"), autoSaveBox, autoSaveLayout,
-		m_enableRunningAutoSave, SLOT(toggleRunningAutoSave(bool)), false);
+		&m_enableRunningAutoSave, false);
 
 	m_saveIntervalSlider->setEnabled(m_enableAutoSave);
 	m_runningAutoSave->setVisible(m_enableAutoSave);
@@ -422,10 +422,9 @@ SetupDialog::SetupDialog(ConfigTab tab_to_open) :
 	QVBoxLayout * uiFxLayout = new QVBoxLayout(uiFxBox);
 
 	addCheckBox(tr("Smooth scroll in song editor"), uiFxBox, uiFxLayout,
-		m_smoothScroll, SLOT(toggleSmoothScroll(bool)), false);
+		&m_smoothScroll, false);
 	addCheckBox(tr("Display playback cursor in AudioFileProcessor"), uiFxBox, uiFxLayout,
-		m_animateAFP, SLOT(toggleAnimateAFP(bool)), false);
-
+		&m_animateAFP, false);
 
 	// Plugins group
 	QGroupBox * pluginsBox = new QGroupBox(tr("Plugins"), performance_w);
@@ -457,11 +456,10 @@ SetupDialog::SetupDialog(ConfigTab tab_to_open) :
 	pluginsLayout->addWidget(m_vstEmbedComboBox);
 
 	m_vstAlwaysOnTopCheckBox = addCheckBox(tr("Keep plugin windows on top when not embedded"), pluginsBox, pluginsLayout,
-		m_vstAlwaysOnTop, SLOT(toggleVSTAlwaysOnTop(bool)), false);
+		&m_vstAlwaysOnTop, false);
 
 	addCheckBox(tr("Keep effects running even without input"), pluginsBox, pluginsLayout,
-		m_disableAutoQuit, SLOT(toggleDisableAutoQuit(bool)), false);
-
+		&m_disableAutoQuit, false);
 
 	// Performance layout ordering.
 	performance_layout->addWidget(autoSaveBox);
@@ -766,8 +764,7 @@ SetupDialog::SetupDialog(ConfigTab tab_to_open) :
 	{
 		auto *box = addCheckBox(tr("Auto-quantize notes in Piano Roll"),
 								midiRecordingTab, midiRecordingLayout,
-								m_midiAutoQuantize, SLOT(toggleMidiAutoQuantization(bool)),
-								false);
+								&m_midiAutoQuantize, false);
 		box->setToolTip(tr("If enabled, notes will be automatically quantized when recording them from a MIDI controller. If disabled, they are always recorded at the highest possible resolution."));
 	}
 
@@ -1056,80 +1053,6 @@ void SetupDialog::accept()
 
 // General settings slots.
 
-void SetupDialog::toggleTooltips(bool enabled)
-{
-	m_tooltips = enabled;
-}
-
-
-void SetupDialog::toggleDisplayWaveform(bool enabled)
-{
-	m_displayWaveform = enabled;
-}
-
-
-void SetupDialog::toggleNoteLabels(bool enabled)
-{
-	m_printNoteLabels = enabled;
-}
-
-void SetupDialog::toggleShowFaderTicks(bool enabled)
-{
-	m_showFaderTicks = enabled;
-}
-
-void SetupDialog::toggleCompactTrackButtons(bool enabled)
-{
-	m_compactTrackButtons = enabled;
-}
-
-
-void SetupDialog::toggleOneInstrumentTrackWindow(bool enabled)
-{
-	m_oneInstrumentTrackWindow = enabled;
-}
-
-
-void SetupDialog::toggleSideBarOnRight(bool enabled)
-{
-	m_sideBarOnRight = enabled;
-}
-
-
-void SetupDialog::toggleLetPreviewsFinish(bool enabled)
-{
-	m_letPreviewsFinish = enabled;
-}
-
-
-void SetupDialog::toggleTrackDeletionWarning(bool enabled)
-{
-	m_trackDeletionWarning = enabled;
-}
-
-void SetupDialog::toggleMixerChannelDeletionWarning(bool enabled)
-{
-	m_mixerChannelDeletionWarning = enabled;
-}
-
-
-void SetupDialog::toggleMMPZ(bool enabled)
-{
-	m_MMPZ = enabled;
-}
-
-
-void SetupDialog::toggleDisableBackup(bool enabled)
-{
-	m_disableBackup = enabled;
-}
-
-
-void SetupDialog::toggleOpenLastProject(bool enabled)
-{
-	m_openLastProject = enabled;
-}
-
 
 void SetupDialog::loopMarkerModeChanged()
 {
@@ -1140,12 +1063,6 @@ void SetupDialog::loopMarkerModeChanged()
 void SetupDialog::setLanguage(int lang)
 {
 	m_lang = m_languages[lang];
-}
-
-
-void SetupDialog::toggleSoloLegacyBehavior(bool enabled)
-{
-	m_soloLegacyBehavior = enabled;
 }
 
 
@@ -1163,21 +1080,6 @@ void SetupDialog::setAutoSaveInterval(int value)
 }
 
 
-void SetupDialog::toggleAutoSave(bool enabled)
-{
-	m_enableAutoSave = enabled;
-	m_saveIntervalSlider->setEnabled(enabled);
-	m_runningAutoSave->setVisible(enabled);
-	setAutoSaveInterval(m_saveIntervalSlider->value());
-}
-
-
-void SetupDialog::toggleRunningAutoSave(bool enabled)
-{
-	m_enableRunningAutoSave = enabled;
-}
-
-
 void SetupDialog::resetAutoSave()
 {
 	setAutoSaveInterval(MainWindow::DEFAULT_SAVE_INTERVAL_MINUTES);
@@ -1186,34 +1088,10 @@ void SetupDialog::resetAutoSave()
 }
 
 
-void SetupDialog::toggleSmoothScroll(bool enabled)
-{
-	m_smoothScroll = enabled;
-}
-
-
-void SetupDialog::toggleAnimateAFP(bool enabled)
-{
-	m_animateAFP = enabled;
-}
-
-
 void SetupDialog::vstEmbedMethodChanged()
 {
 	m_vstEmbedMethod = m_vstEmbedComboBox->currentData().toString();
 	m_vstAlwaysOnTopCheckBox->setVisible(m_vstEmbedMethod == "none");
-}
-
-
-void SetupDialog::toggleVSTAlwaysOnTop(bool enabled)
-{
-	m_vstAlwaysOnTop = enabled;
-}
-
-
-void SetupDialog::toggleDisableAutoQuit(bool enabled)
-{
-	m_disableAutoQuit = enabled;
 }
 
 void SetupDialog::audioInterfaceChanged(const QString & iface)
@@ -1296,11 +1174,6 @@ void SetupDialog::midiInterfaceChanged(const QString & iface)
 	}
 
 	m_midiIfaceSetupWidgets[m_midiIfaceNames[iface]]->show();
-}
-
-void SetupDialog::toggleMidiAutoQuantization(bool enabled)
-{
-	m_midiAutoQuantize = enabled;
 }
 
 

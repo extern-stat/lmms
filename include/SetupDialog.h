@@ -71,33 +71,13 @@ protected slots:
 
 private slots:
 	// General settings widget.
-	void toggleTooltips(bool enabled);
-	void toggleDisplayWaveform(bool enabled);
-	void toggleNoteLabels(bool enabled);
-	void toggleShowFaderTicks(bool enabled);
-	void toggleCompactTrackButtons(bool enabled);
-	void toggleOneInstrumentTrackWindow(bool enabled);
-	void toggleSideBarOnRight(bool enabled);
-	void toggleLetPreviewsFinish(bool enabled);
-	void toggleSoloLegacyBehavior(bool enabled);
-	void toggleTrackDeletionWarning(bool enabled);
-	void toggleMixerChannelDeletionWarning(bool enabled);
-	void toggleMMPZ(bool enabled);
-	void toggleDisableBackup(bool enabled);
-	void toggleOpenLastProject(bool enabled);
 	void loopMarkerModeChanged();
 	void setLanguage(int lang);
 
 	// Performance settings widget.
 	void setAutoSaveInterval(int time);
 	void resetAutoSave();
-	void toggleAutoSave(bool enabled);
-	void toggleRunningAutoSave(bool enabled);
-	void toggleSmoothScroll(bool enabled);
-	void toggleAnimateAFP(bool enabled);
 	void vstEmbedMethodChanged();
-	void toggleVSTAlwaysOnTop(bool en);
-	void toggleDisableAutoQuit(bool enabled);
 
 	// Audio settings widget.
 	void audioInterfaceChanged(const QString & driver);
@@ -107,7 +87,6 @@ private slots:
 
 	// MIDI settings widget.
 	void midiInterfaceChanged(const QString & driver);
-	void toggleMidiAutoQuantization(bool enabled);
 
 	// Paths settings widget.
 	void openWorkingDir();
