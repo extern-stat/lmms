@@ -148,7 +148,7 @@ const std::vector<float> PianoRoll::m_zoomLevels =
 		{0.125f, 0.25f, 0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 2.0f, 4.0f, 8.0f};
 
 const std::vector<float> PianoRoll::m_zoomYLevels =
-		{0.25f, 0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 4.0f};
+		{0.25f, 0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 2.0f, 2.5f, 3.0f, 4.0f};
 
 
 PianoRoll::PianoRoll() :
@@ -179,7 +179,7 @@ PianoRoll::PianoRoll() :
 	m_userSetNotesEditHeight(100),
 	m_ppb( DEFAULT_PR_PPB ),
 	m_keyLineHeight(DEFAULT_KEY_LINE_HEIGHT),
-	m_whiteKeySmallHeight(qFloor(m_keyLineHeight * 1.5)),
+	m_whiteKeySmallHeight(qCeil(m_keyLineHeight * 1.5)),
 	m_whiteKeyBigHeight(m_keyLineHeight * 2),
 	m_blackKeyHeight(m_keyLineHeight),
 	m_lenOfNewNotes( TimePos( 0, DefaultTicksPerBar/4 ) ),
@@ -4945,7 +4945,7 @@ void PianoRoll::zoomingChanged()
 void PianoRoll::zoomingYChanged()
 {
 	m_keyLineHeight = m_zoomYLevels[m_zoomingYModel.value()] * DEFAULT_KEY_LINE_HEIGHT;
-	m_whiteKeySmallHeight = qFloor(m_keyLineHeight * 1.5);
+	m_whiteKeySmallHeight = qCeil(m_keyLineHeight * 1.5);
 	m_whiteKeyBigHeight = m_keyLineHeight * 2;
 	m_blackKeyHeight = m_keyLineHeight; //round(m_keyLineHeight * 1.3333);
 
