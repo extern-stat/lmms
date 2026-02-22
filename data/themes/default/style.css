@@ -636,28 +636,25 @@ QToolButton, QToolButton::menu-button {
 }
 
 QToolButton:hover {
-	border-top: 1px solid #909eb3;
-	border-bottom: 1px solid #1e2226;
-	border-radius: 2px;
+	border-top-color: #909eb3;
+	border-bottom-color: #1e2226;
 	background: qlineargradient(spread:reflect, x1:0, y1:0, x2:0, y2:1, stop:0 #7c8799, stop:1 #343840)
 }
 
 QToolButton:hover:checked {
-	border: 2px solid #343840;
-	border-radius: 2px;
+	border-top-color: #343840;
 	background: qlineargradient(spread:reflect, x1:0, y1:0, x2:0, y2:1, stop:0 #292d33, stop:1 #22262c)
 }
 
 QToolButton:pressed {
-	border-top: 1px solid #778394;
-	border-bottom: 1px solid #1e2226;
-	border-radius: 2px;
+	border-top-color: #778394;
+	border-bottom-color: #1e2226;
 	background: qlineargradient(spread:reflect, x1:0, y1:0, x2:0, y2:1, stop:0 #636c7a, stop:1 #262b30);
 }
 
 QToolButton:checked {
-	border-top: 1px solid #1b1f22;
-	border-bottom: 1px solid #4a515e;
+	border-top-color: #1b1f22;
+	border-bottom-color: #4a515e;
 	background: qlineargradient(spread:reflect, x1:0, y1:0, x2:0, y2:1, stop:0 #1b1f22, stop:1 #13161a);
 	background-image: url("resources:shadow_p.png");
 }
