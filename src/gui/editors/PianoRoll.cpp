@@ -5635,8 +5635,8 @@ void PianoRollWindow::saveSettings( QDomDocument & doc, QDomElement & de )
 
 void PianoRollWindow::loadSettings( const QDomElement & de )
 {
-	m_editor->m_keyModel.setValue(de.attribute("key").toInt());
 	m_editor->m_scaleModel.setValue(de.attribute("scale").toInt());
+	m_editor->m_keyModel.setValue(de.attribute("key").toInt());
 	m_editor->m_zoomingModel.setValue(de.attribute("zoom", QString::number(m_editor->m_zoomingModel.findText("100%"))).toInt());
 	m_editor->m_zoomingYModel.setValue(de.attribute("zoomY", QString::number(m_editor->m_zoomingYModel.findText("100%"))).toInt());
 	m_editor->loadGhostNotes( de.firstChildElement("ghostnotes") );
