@@ -413,13 +413,9 @@ void InstrumentTrackWindow::saveSettingsBtnClicked()
 	{
 		QDir().mkdir(presetRoot);
 	}
-	if(!QDir(presetRoot + m_track->instrumentName()).exists())
-	{
-		QDir(presetRoot).mkdir(m_track->instrumentName());
-	}
 
 	sfd.setAcceptMode(FileDialog::AcceptSave);
-	sfd.setDirectory(presetRoot + m_track->instrumentName());
+	sfd.setDirectory(presetRoot);
 	sfd.setFileMode( FileDialog::AnyFile );
 	QString fname = m_track->name();
 	sfd.selectFile(fname.remove(QRegularExpression(FILENAME_FILTER)));
