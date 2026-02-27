@@ -76,7 +76,7 @@ void Timeline::loadSettings(const QDomElement& element)
 		static_cast<TimePos>(element.attribute("lp1pos").toInt())
 	);
 	setLoopEnabled(static_cast<bool>(element.attribute("lpstate").toInt()));
-	setStopBehaviour(static_cast<StopBehaviour>(element.attribute("stopbehaviour", "1").toInt()));
+	setStopBehaviour(static_cast<StopBehaviour>(element.attribute("stopbehaviour", "0").toInt()));
 }
 
 } // namespace lmms

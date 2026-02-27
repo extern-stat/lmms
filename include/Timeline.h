@@ -110,7 +110,7 @@ private:
 
 	double m_elapsedSeconds = 0;
 
-	StopBehaviour m_stopBehaviour = StopBehaviour::BackToStart;
+	StopBehaviour m_stopBehaviour = StopBehaviour::BackToZero;
 	TimePos m_playStartPosition = TimePos{-1};
 };
 
