@@ -152,6 +152,7 @@ SetupDialog::SetupDialog(ConfigTab tab_to_open) :
 	m_midiAutoQuantize(ConfigManager::inst()->value(
 			"midi", "autoquantize", "0").toInt() != 0),
 	m_workingDir(QDir::toNativeSeparators(ConfigManager::inst()->workingDir())),
+	m_projectDir(QDir::toNativeSeparators(ConfigManager::inst()->projectDir())),
 	m_vstDir(QDir::toNativeSeparators(ConfigManager::inst()->vstDir())),
 	m_ladspaDir(QDir::toNativeSeparators(ConfigManager::inst()->ladspaDir())),
 	m_gigDir(QDir::toNativeSeparators(ConfigManager::inst()->gigDir())),
@@ -829,6 +830,10 @@ SetupDialog::SetupDialog(ConfigTab tab_to_open) :
 		SLOT(setWorkingDir(const QString&)),
 		SLOT(openWorkingDir()),
 		m_workingDirLineEdit);
+	addPathEntry(tr("Projects directory"), m_projectDir,
+		SLOT(setProjectDir(const QString&)),
+		SLOT(openProjectDir()),
+		m_projectDirLineEdit);
 	addPathEntry(tr("VST plugins directory"), m_vstDir,
 		SLOT(setVSTDir(const QString&)),
 		SLOT(openVSTDir()),
@@ -1029,6 +1034,7 @@ void SetupDialog::accept()
 
 
 	ConfigManager::inst()->setWorkingDir(QDir::fromNativeSeparators(m_workingDir));
+	ConfigManager::inst()->setProjectDir(QDir::fromNativeSeparators(m_projectDir));
 	ConfigManager::inst()->setVSTDir(QDir::fromNativeSeparators(m_vstDir));
 	ConfigManager::inst()->setLADSPADir(QDir::fromNativeSeparators(m_ladspaDir));
 	ConfigManager::inst()->setSF2Dir(QDir::fromNativeSeparators(m_sf2Dir));
@@ -1192,6 +1198,21 @@ void SetupDialog::openWorkingDir()
 	if (!new_dir.isEmpty())
 	{
 		m_workingDirLineEdit->setText(new_dir);
+	}
+}
+
+
+void SetupDialog::setProjectDir(const QString& projectDir)
+{
+	m_projectDir = projectDir;
+}
+
+void SetupDialog::openProjectDir()
+{
+	QString new_dir = FileDialog::getExistingDirectory(this, tr("Choose your projects directory"), m_projectDir);
+	if (!new_dir.isEmpty())
+	{
+		m_projectDirLineEdit->setText(new_dir);
 	}
 }
 

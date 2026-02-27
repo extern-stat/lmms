@@ -74,6 +74,11 @@ public:
 		return m_workingDir;
 	}
 
+	const QString& projectDir() const
+	{
+		return m_projectDir;
+	}
+
 	void initPortableWorkingDir();
 
 	void initInstalledWorkingDir();
@@ -108,7 +113,7 @@ public:
 
 	QString userProjectsDir() const
 	{
-		return workingDir() + PROJECTS_PATH;
+		return projectDir();
 	}
 
 	QString userTemplateDir() const
@@ -255,6 +260,7 @@ public:
 
 
 	void setWorkingDir(const QString & workingDir);
+	void setProjectDir(const QString& projectDir);
 	void setVSTDir(const QString & vstDir);
 	void setLADSPADir(const QString & ladspaDir);
 	void setSF2Dir(const QString & sf2Dir);
@@ -287,6 +293,7 @@ private:
 	static const std::vector<UpgradeMethod> UPGRADE_METHODS;
 
 	QString m_workingDir;
+	QString m_projectDir;
 	QString m_dataDir;
 	QString m_vstDir;
 	QString m_ladspaDir;

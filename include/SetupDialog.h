@@ -91,6 +91,8 @@ private slots:
 	// Paths settings widget.
 	void openWorkingDir();
 	void setWorkingDir(const QString & workingDir);
+	void openProjectDir();
+	void setProjectDir(const QString& projectDir);
 	void openVSTDir();
 	void setVSTDir(const QString & vstDir);
 	void openLADSPADir();
@@ -176,6 +178,7 @@ private:
 
 	// Paths settings widgets.
 	QString m_workingDir;
+	QString m_projectDir;
 	QString m_vstDir;
 	QString m_ladspaDir;
 	QString m_gigDir;
@@ -187,6 +190,7 @@ private:
 	QString m_backgroundPicFile;
 
 	QLineEdit * m_workingDirLineEdit;
+	QLineEdit* m_projectDirLineEdit;
 	QLineEdit * m_vstDirLineEdit;
 	QLineEdit * m_themeDirLineEdit;
 	QLineEdit * m_ladspaDirLineEdit;

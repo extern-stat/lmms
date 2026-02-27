@@ -74,6 +74,7 @@ ConfigManager::ConfigManager() :
 		initInstalledWorkingDir();
 	}
 	m_dataDir = "data:/";
+	m_projectDir = m_workingDir + PROJECTS_PATH;
 	m_vstDir = m_workingDir + "vst/";
 	m_sf2Dir = m_workingDir + SF2_PATH;
 	m_gigDir = m_workingDir + GIG_PATH;
@@ -230,6 +231,12 @@ bool ConfigManager::hasWorkingDir() const
 void ConfigManager::setWorkingDir(const QString & workingDir)
 {
 	m_workingDir = ensureTrailingSlash(QDir::cleanPath(workingDir));
+}
+
+
+void ConfigManager::setProjectDir(const QString& projectDir)
+{
+	m_projectDir = ensureTrailingSlash(QDir::cleanPath(projectDir));
 }
 
 
@@ -524,6 +531,7 @@ void ConfigManager::loadConfigFile(const QString & configFile)
 			}
 			setWorkingDir(value("paths", "workingdir"));
 
+			setProjectDir(value("paths", "projectdir"));
 			setGIGDir(value("paths", "gigdir") == "" ? gigDir() : value("paths", "gigdir"));
 			setSF2Dir(value("paths", "sf2dir") == "" ? sf2Dir() : value("paths", "sf2dir"));
 			setVSTDir(value("paths", "vstdir"));
@@ -563,6 +571,11 @@ void ConfigManager::loadConfigFile(const QString & configFile)
 	if(m_ladspaDir.isEmpty() )
 	{
 		m_ladspaDir = userLadspaDir();
+	}
+
+	if (m_projectDir.isEmpty())
+	{
+		m_projectDir = m_workingDir + PROJECTS_PATH;
 	}
 
 #ifdef LMMS_HAVE_STK
@@ -619,6 +632,7 @@ void ConfigManager::saveConfigFile()
 {
 	setValue("paths", "theme", m_themeDir);
 	setValue("paths", "workingdir", m_workingDir);
+	setValue("paths", "projectdir", m_projectDir);
 	setValue("paths", "vstdir", m_vstDir);
 	setValue("paths", "gigdir", m_gigDir);
 	setValue("paths", "sf2dir", m_sf2Dir);
