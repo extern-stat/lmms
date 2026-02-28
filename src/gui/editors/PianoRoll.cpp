@@ -2041,10 +2041,9 @@ void PianoRoll::mousePressEvent(QMouseEvent * me )
 			else if( me->buttons() == Qt::LeftButton )
 			{
 				// left click - play the note
-				int v = ((float) x) / ((float) m_whiteKeyWidth) * MidiDefaultVelocity;
-				m_midiClip->instrumentTrack()->pianoModel()->handleKeyPress(key_num, v);
+				m_midiClip->instrumentTrack()->pianoModel()->handleKeyPress(key_num, MidiDefaultVelocity);
 				// if a chord is set, play the chords notes as well:
-				playChordNotes(key_num, v);
+				playChordNotes(key_num, MidiDefaultVelocity);
 			}
 		}
 		else
@@ -2544,7 +2543,7 @@ void PianoRoll::mouseMoveEvent( QMouseEvent * me )
 			&& me->buttons() & Qt::LeftButton )
 		{
 			// clicked on a key, play the note
-			testPlayKey(key_num, ((float) x) / ((float) m_whiteKeyWidth) * MidiDefaultVelocity, 0);
+			testPlayKey(key_num, MidiDefaultVelocity, 0);
 			update();
 			return;
 		}
