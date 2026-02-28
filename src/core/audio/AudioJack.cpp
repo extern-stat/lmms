@@ -500,7 +500,7 @@ AudioJack::setupWidget::setupWidget(QWidget* parent)
 {
 	const char* serverName = nullptr;
 	jack_status_t status;
-	m_client = jack_client_open("LMMS-Setup Dialog", JackNullOption, &status, serverName);
+	m_client = jack_client_open("LMMS-Setup Dialog", JackNoStartServer, &status, serverName);
 	if (!m_client)
 	{
 		std::fprintf(stderr, "jack_client_open() failed, ");
