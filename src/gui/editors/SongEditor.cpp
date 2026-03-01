@@ -27,6 +27,7 @@
 #include <cmath>
 
 #include <QAction>
+#include <QDomElement>
 #include <QKeyEvent>
 #include <QLabel>
 #include <QMdiArea>
@@ -280,11 +281,13 @@ SongEditor::SongEditor( Song * song ) :
 
 void SongEditor::saveSettings( QDomDocument& doc, QDomElement& element )
 {
+	element.setAttribute("snap", m_snappingModel->value());
 	MainWindow::saveWidgetState( parentWidget(), element );
 }
 
 void SongEditor::loadSettings( const QDomElement& element )
 {
+	m_snappingModel->setValue(element.attribute("snap", QString::number(m_snappingModel->findText("1 Bar"))).toInt());
 	MainWindow::restoreWidgetState(parentWidget(), element);
 }
 

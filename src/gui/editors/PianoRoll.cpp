@@ -5623,6 +5623,7 @@ void PianoRollWindow::saveSettings( QDomDocument & doc, QDomElement & de )
 	de.setAttribute("scale", m_editor->m_scaleModel.value());
 	de.setAttribute("zoom", m_editor->m_zoomingModel.value());
 	de.setAttribute("zoomY", m_editor->m_zoomingYModel.value());
+	de.setAttribute("quantize", m_editor->m_quantizeModel.value());
 	de.setAttribute("stopbehaviour", static_cast<int>(
 		Engine::getSong()->getTimeline(Song::PlayMode::MidiClip).stopBehaviour()));
 
@@ -5638,6 +5639,7 @@ void PianoRollWindow::loadSettings( const QDomElement & de )
 	m_editor->m_keyModel.setValue(de.attribute("key").toInt());
 	m_editor->m_zoomingModel.setValue(de.attribute("zoom", QString::number(m_editor->m_zoomingModel.findText("100%"))).toInt());
 	m_editor->m_zoomingYModel.setValue(de.attribute("zoomY", QString::number(m_editor->m_zoomingYModel.findText("100%"))).toInt());
+	m_editor->m_quantizeModel.setValue(de.attribute("quantize", QString::number(m_editor->m_quantizeModel.findText("1/16"))).toInt());
 	m_editor->loadGhostNotes( de.firstChildElement("ghostnotes") );
 	m_editor->loadMarkedSemiTones(de.firstChildElement("markedSemiTones"));
 
