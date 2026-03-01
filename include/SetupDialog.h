@@ -72,6 +72,7 @@ protected slots:
 private slots:
 	// General settings widget.
 	void loopMarkerModeChanged();
+	void detachBehaviorChanged();
 	void setLanguage(int lang);
 
 	// Performance settings widget.
@@ -129,6 +130,8 @@ private:
 	bool m_MMPZ;
 	bool m_disableBackup;
 	bool m_openLastProject;
+	QString m_detachBehavior;
+	QComboBox* m_detachBehaviorComboBox;
 	QString m_loopMarkerMode;
 	QComboBox* m_loopMarkerComboBox;
 	QString m_autoScroll;
