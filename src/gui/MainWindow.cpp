@@ -448,11 +448,11 @@ void MainWindow::finalize()
 	mixer_window->setShortcut(keySequence(Qt::CTRL, Qt::Key_5));
 
 	auto controllers_window = new ToolButton(embed::getIconPixmap("controller"),
-		tr("Show/hide controller rack") + " (Ctrl+6)", this, SLOT(toggleControllerRack()), m_toolBar);
+		tr("Controller Rack") + " (Ctrl+6)", this, SLOT(toggleControllerRack()), m_toolBar);
 	controllers_window->setShortcut(keySequence(Qt::CTRL, Qt::Key_6));
 
 	auto project_notes_window = new ToolButton(embed::getIconPixmap("project_notes"),
-		tr("Show/hide project notes") + " (Ctrl+7)", this, SLOT(toggleProjectNotesWin()), m_toolBar);
+		tr("Project Notes") + " (Ctrl+7)", this, SLOT(toggleProjectNotesWin()), m_toolBar);
 	project_notes_window->setShortcut(keySequence(Qt::CTRL, Qt::Key_7));
 
 	m_toolBarLayout->addWidget( song_editor_window, 1, 1 );
