@@ -222,7 +222,7 @@ void MidiClipView::constructContextMenu( QMenu * _cm )
 	{
 		_cm->addAction(
 			embed::getIconPixmap("edit_merge"),
-			tr("Merge Selection"),
+			tr("Merge selection"),
 			[this]() { mergeClips(getClickedClips()); }
 		);
 	}
