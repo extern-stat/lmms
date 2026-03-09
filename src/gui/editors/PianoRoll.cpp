@@ -5394,12 +5394,12 @@ PianoRollWindow::PianoRollWindow() :
 	connect(duplicateQuantizedAction, &QAction::triggered, [this](){ m_editor->duplicateNotes(true); });
 	duplicateQuantizedAction->setShortcut(keySequence(Qt::CTRL, Qt::Key_D));
 
-	auto duplicateUnquantizedAction = new QAction(embed::getIconPixmap("edit_copy"), tr("Duplicate (Unquantized)"), noteToolsButton);
+	auto duplicateUnquantizedAction = new QAction(embed::getIconPixmap("edit_copy"), tr("Duplicate (unquantized)"), noteToolsButton);
 	connect(duplicateUnquantizedAction, &QAction::triggered, [this](){ m_editor->duplicateNotes(false); });
 	duplicateUnquantizedAction->setShortcut(keySequence(Qt::CTRL, Qt::SHIFT, Qt::Key_D));
 
 
-	auto reverseAction = new QAction(embed::getIconPixmap("flip_x"), tr("Reverse Notes"), noteToolsButton);
+	auto reverseAction = new QAction(embed::getIconPixmap("flip_x"), tr("Reverse"), noteToolsButton);
 	connect(reverseAction, &QAction::triggered, [this](){ m_editor->reverseNotes(); });
 	reverseAction->setShortcut(keySequence(Qt::SHIFT, Qt::Key_R));
 
