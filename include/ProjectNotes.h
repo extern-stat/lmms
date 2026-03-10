@@ -26,6 +26,7 @@
 #define LMMS_GUI_PROJECT_NOTES_H
 
 #include <QMainWindow>
+#include <QCloseEvent>
 
 #include "SerializingObject.h"
 
@@ -59,6 +60,7 @@ public:
 
 protected:
 	void setupActions();
+	void closeEvent(QCloseEvent* event) override;
 
 
 private slots:

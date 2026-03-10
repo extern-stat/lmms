@@ -370,8 +370,10 @@ void ProjectNotes::alignmentChanged( int _a )
 	Engine::getSong()->setModified();
 }
 
-
-
+void ProjectNotes::closeEvent(QCloseEvent* event)
+{
+	event->ignore();
+}
 
 void ProjectNotes::saveSettings( QDomDocument & _doc, QDomElement & _this )
 {
