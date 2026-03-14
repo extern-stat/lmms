@@ -327,7 +327,7 @@ void MainWindow::finalize()
 		QKeySequence::Undo, &MainWindow::undo);
 
 	m_redoAction = addAction(edit_menu, "edit_redo", tr("Redo"),
-		QKeySequence::Redo, &MainWindow::redo);
+		keySequence(Qt::CTRL, Qt::SHIFT, Qt::Key_Z), &MainWindow::redo);
 
 	m_undoAction->setShortcutContext(Qt::ApplicationShortcut);
 	m_redoAction->setShortcutContext(Qt::ApplicationShortcut);
