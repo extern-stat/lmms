@@ -65,7 +65,7 @@ MixerChannel::MixerChannel( int idx, Model * _parent ) :
 	m_buffer(Engine::audioEngine()->framesPerPeriod()),
 	m_muteModel( false, _parent ),
 	m_soloModel( false, _parent ),
-	m_volumeModel(1.f, 0.f, 1.995263f, 0.001f, _parent),
+	m_volumeModel(1.f, 0.f, 1.995263f, 0.01f, _parent),
 	m_name(),
 	m_lock(),
 	m_queued( false ),
