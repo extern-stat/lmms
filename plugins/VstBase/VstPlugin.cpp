@@ -33,7 +33,6 @@
 #include <QFileInfo>
 #include <QLocale>
 #include <QTemporaryFile>
-#include <QTimerEvent>
 
 #if defined(LMMS_BUILD_LINUX) && (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #	include <QX11Info>
@@ -51,12 +50,10 @@
 #include "AudioEngine.h"
 #include "ConfigManager.h"
 #include "FileDialog.h"
-#include "FontHelper.h"
 #include "GuiApplication.h"
 #include "LocaleHelper.h"
 #include "MainWindow.h"
 #include "PathUtil.h"
-#include "SimpleTextFloat.h"
 #include "Song.h"
 
 #ifdef LMMS_BUILD_LINUX
@@ -462,38 +459,12 @@ bool VstPlugin::processMessage( const message & _m )
 			m_allProgramNames = _m.getQString();
 			break;
 
-		case IdVstLoadAllParameterLabels:
-		{
-			const auto labels = _m.getQString();
-			m_allParameterLabels.clear();
-			for (int i = 0; i < labels.size();)
-			{
-				const int length = labels[i].digitValue();
-				m_allParameterLabels.push_back(labels.mid(i + 1, length));
-				i += length + 1;
-			}
-			break;
-		}
-
-		case IdVstLoadAllParameterDisplays:
-		{
-			const auto displays = _m.getQString();
-			m_allParameterDisplays.clear();
-			for (int i = 0; i < displays.size();)
-			{
-				const int length = displays[i].digitValue();
-				m_allParameterDisplays.push_back(displays.mid(i + 1, length));
-				i += length + 1;
-			}
-			break;
-		}
-
-		case IdVstUpdateParameterLabel:
-			m_allParameterLabels.at(static_cast<std::size_t>(_m.getInt(0))) = _m.getQString(1);
+		case IdVstParameterLabels:
+			m_allParameterLabels = _m.getQString();
 			break;
 
-		case IdVstUpdateParameterDisplay:
-			m_allParameterDisplays.at(static_cast<std::size_t>(_m.getInt(0))) = _m.getQString(1);
+		case IdVstParameterDisplays:
+			m_allParameterDisplays = _m.getQString();
 			break;
 
 		case IdVstPluginUniqueID:
@@ -586,8 +557,8 @@ void VstPlugin::loadProgramNames()
 void VstPlugin::loadParameterLabels()
 {
 	lock();
-	sendMessage(message(IdVstLoadAllParameterLabels));
-	waitForMessage(IdVstLoadAllParameterLabels, true);
+	sendMessage( message( IdVstParameterLabels ) );
+	waitForMessage( IdVstParameterLabels, true );
 	unlock();
 }
 
@@ -597,30 +568,8 @@ void VstPlugin::loadParameterLabels()
 void VstPlugin::loadParameterDisplays()
 {
 	lock();
-	sendMessage(message(IdVstLoadAllParameterDisplays));
-	waitForMessage(IdVstLoadAllParameterDisplays, true);
-	unlock();
-}
-
-
-
-
-void VstPlugin::updateParameterLabel(int index)
-{
-	lock();
-	sendMessage(message(IdVstUpdateParameterLabel).addInt(index));
-	waitForMessage(IdVstUpdateParameterLabel, true);
-	unlock();
-}
-
-
-
-
-void VstPlugin::updateParameterDisplay(int index)
-{
-	lock();
-	sendMessage(message(IdVstUpdateParameterDisplay).addInt(index));
-	waitForMessage(IdVstUpdateParameterDisplay, true);
+	sendMessage( message( IdVstParameterDisplays ) );
+	waitForMessage( IdVstParameterDisplays, true );
 	unlock();
 }
 
@@ -867,69 +816,5 @@ QString VstPlugin::embedMethod() const
 	return m_embedMethod;
 }
 
-namespace gui {
 
-VstPluginKnob::VstPluginKnob(VstPlugin* plugin, int paramIndex, const QString& name, QWidget* parent)
-	: gui::Knob{gui::KnobType::Bright26, name.left(15), SMALL_FONT_SIZE, parent, name}
-	, m_plugin{plugin}
-	, m_paramIndex{paramIndex}
-{
-	assert(m_plugin != nullptr);
-	setDescription(name + ":");
-}
-
-void VstPluginKnob::timerEvent(QTimerEvent* event)
-{
-	if (event->timerId() != m_rateLimitTimerId) { return; }
-
-	if (textFloat().source() != static_cast<FloatModelEditorBase*>(this))
-	{
-		// This knob is no longer controlling the text float,
-		// so we don't need the timer to continue running.
-		killTimer(m_rateLimitTimerId);
-		m_rateLimitTimerId = 0;
-		return;
-	}
-
-	// Enough time has passed, so time for an update
-	m_updateNow = true;
-}
-
-auto VstPluginKnob::getCustomFloatingText() -> QString
-{
-	constexpr auto updatesPerSecond = 15;
-
-	if (m_rateLimitTimerId == 0)
-	{
-		// Use a timer to control the rate of text float updates.
-		// Otherwise the CPU will spike when the parameter emits a bunch of dataChanged()
-		// events in a short period of time - i.e. when the parameter's value changes rapidly.
-		m_rateLimitTimerId = startTimer(std::chrono::milliseconds{1000} / updatesPerSecond);
-	}
-
-	return getParameterText();
-}
-
-auto VstPluginKnob::getCustomFloatingTextUpdate() -> std::optional<QString>
-{
-	if (!m_updateNow) { return std::nullopt; }
-	m_updateNow = false;
-
-	return getParameterText();
-}
-
-auto VstPluginKnob::getParameterText() const -> QString
-{
-	m_plugin->updateParameterLabel(m_paramIndex);
-	m_plugin->updateParameterDisplay(m_paramIndex);
-
-	const auto& paramLabels = m_plugin->allParameterLabels();
-	const auto& paramDisplays = m_plugin->allParameterDisplays();
-	assert(paramLabels.size() == paramDisplays.size());
-
-	assert(m_paramIndex < paramLabels.size());
-	return paramDisplays[m_paramIndex] + ' ' + paramLabels[m_paramIndex];
-}
-
-} // namespace gui
 } // namespace lmms

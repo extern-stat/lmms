@@ -1,9 +1,9 @@
 /*
- * TextFloat.h - class textFloat, a floating text-label
+ * CustomTextKnob.h
  *
- * Copyright (c) 2023 LMMS team
-*
-* This file is part of LMMS - https://lmms.io
+ * Copyright (c) 2020 Ibuki Sugiyama <main/at/fuwa.dev>
+ *
+ * This file is part of LMMS - https://lmms.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -20,51 +20,39 @@
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301 USA.
  *
-*/
+ */
 
+#ifndef LMMS_GUI_CUSTOM_TEXT_KNOB_H
+#define LMMS_GUI_CUSTOM_TEXT_KNOB_H
 
-#ifndef LMMS_GUI_SIMPLE_TEXT_FLOAT_H
-#define LMMS_GUI_SIMPLE_TEXT_FLOAT_H
-
-#include <QWidget>
-
-#include "lmms_export.h"
-
-class QLabel;
-class QTimer;
+#include "Knob.h"
 
 namespace lmms::gui
 {
 
-class LMMS_EXPORT SimpleTextFloat : public QWidget
+
+class LMMS_EXPORT CustomTextKnob : public Knob
 {
-	Q_OBJECT
+protected:
+	inline void setHintText( const QString & _txt_before, const QString & _txt_after ) {} // inaccessible
 public:
-	SimpleTextFloat();
-	~SimpleTextFloat() override = default;
+	CustomTextKnob( KnobType _knob_num, const QString& label, QWidget * _parent = nullptr, const QString & _name = QString(), const QString & _value_text = QString() );
 
-	void setText(const QString & text);
+	CustomTextKnob( const Knob& other ) = delete;
 
-	void showWithDelay(int msecBeforeDisplay, int msecDisplayTime);
-
-	void showWithTimeout(int msec)
+	inline void setValueText(const QString & _value_text)
 	{
-		showWithDelay(0, msec);
+		m_value_text = _value_text;
 	}
-
-	void moveGlobal(QWidget * w, const QPoint & offset)
-	{
-		move(w->mapToGlobal(QPoint(0, 0)) + offset);
-	}
-
-	void hide();
 
 private:
-	QLabel * m_textLabel;
-	QTimer * m_showTimer;
-	QTimer * m_hideTimer;
-};
+	QString displayValue() const override;
+
+protected:
+	QString m_value_text;
+} ;
+
 
 } // namespace lmms::gui
 
-#endif // LMMS_GUI_SIMPLE_TEXT_FLOAT_H
+#endif // LMMS_GUI_CUSTOM_TEXT_KNOB_H

@@ -551,7 +551,8 @@ TripleOscillatorView::TripleOscillatorView( Instrument * _instrument,
 		int knob_y = osc_y + i * osc_h;
 
 		// setup volume-knob
-		auto vk = new VolumeKnob(KnobType::Styled, this);
+		auto vk = new Knob(KnobType::Styled, this);
+		vk->setVolumeKnob( true );
 		vk->setFixedSize( 28, 35 );
 		vk->move( 6, knob_y );
 		vk->setHintText( tr( "Osc %1 volume:" ).arg(

@@ -204,17 +204,19 @@ public:
 		write( &_i, sizeof( _i ) );
 	}
 
-	std::string readString()
+	inline std::string readString()
 	{
-		std::string ret;
 		const int len = readInt();
-		if (len > 0)
+		if( len )
 		{
-			ret.resize(static_cast<std::size_t>(len));
-			read(ret.data(), len);
-			ret[len] = '\0';
+			char * sc = new char[len + 1];
+			read( sc, len );
+			sc[len] = 0;
+			std::string s( sc );
+			delete[] sc;
+			return s;
 		}
-		return ret;
+		return std::string();
 	}
 
 
@@ -369,10 +371,9 @@ public:
 		{
 		}
 
-		template<class... Args>
-		message& addString(Args&&... args)
+		inline message & addString( const std::string & _s )
 		{
-			data.emplace_back(std::forward<Args>(args)...);
+			data.push_back( _s );
 			return *this;
 		}
 
@@ -480,17 +481,19 @@ public:
 		write( &_i, sizeof( _i ) );
 	}
 
-	std::string readString()
+	inline std::string readString()
 	{
-		std::string ret;
 		const int len = readInt();
-		if (len > 0)
+		if( len )
 		{
-			ret.resize(static_cast<std::size_t>(len));
-			read(ret.data(), len);
-			ret[len] = '\0';
+			char * sc = new char[len + 1];
+			read( sc, len );
+			sc[len] = 0;
+			std::string s( sc );
+			delete[] sc;
+			return s;
 		}
-		return ret;
+		return std::string();
 	}
 
 

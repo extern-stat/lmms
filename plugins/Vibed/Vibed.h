@@ -116,7 +116,7 @@ private:
 	void modelChanged() override;
 
 	// String-related
-	VolumeKnob m_volumeKnob;
+	Knob m_volumeKnob;
 	Knob m_stiffnessKnob;
 	Knob m_pickKnob;
 	Knob m_pickupKnob;

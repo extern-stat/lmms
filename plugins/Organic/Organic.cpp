@@ -372,23 +372,13 @@ namespace gui
 class OrganicKnob : public Knob
 {
 public:
-	OrganicKnob(QWidget* parent)
-		: Knob(KnobType::Styled, parent)
+	OrganicKnob( QWidget * _parent ) :
+		Knob( KnobType::Styled, _parent )
 	{
-		setFixedSize(21, 21);
+		setFixedSize( 21, 21 );
 	}
 };
 
-
-class OrganicVolumeKnob : public VolumeKnob
-{
-public:
-	OrganicVolumeKnob(QWidget* parent)
-		: VolumeKnob(KnobType::Styled, parent)
-	{
-		setFixedSize(21, 21);
-	}
-};
 
 
 OrganicInstrumentView::OrganicInstrumentView( Instrument * _instrument,
@@ -412,7 +402,8 @@ OrganicInstrumentView::OrganicInstrumentView( Instrument * _instrument,
 	m_fx1Knob->setObjectName( "fx1Knob" );
 
 	// setup volume-knob
-	m_volKnob = new OrganicVolumeKnob(this);
+	m_volKnob = new OrganicKnob( this );
+	m_volKnob->setVolumeKnob( true );
 	m_volKnob->move( 60, 201 );
 	m_volKnob->setFixedSize( 37, 47 );
 	m_volKnob->setHintText( tr( "Volume:" ), "%" );
@@ -479,7 +470,8 @@ void OrganicInstrumentView::modelChanged()
 		oscKnob->setHintText( tr( "Osc %1 waveform:" ).arg( i + 1 ), QString() );
 
 		// setup volume-knob
-		auto volKnob = new VolumeKnob(KnobType::Styled, this);
+		auto volKnob = new Knob(KnobType::Styled, this);
+		volKnob->setVolumeKnob( true );
 		volKnob->move( x + i * colWidth, y + rowHeight*1 );
 		volKnob->setFixedSize( 21, 21 );
 		volKnob->setHintText( tr( "Osc %1 volume:" ).arg(

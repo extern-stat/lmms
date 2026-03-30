@@ -47,10 +47,10 @@ class VstPlugin;
 
 namespace gui
 {
-class ManageVestigeInstrumentView;
 class PixmapButton;
+class CustomTextKnob;
 class VestigeInstrumentView;
-class VstPluginKnob;
+class ManageVestigeInstrumentView;
 } // namespace gui
 
 
@@ -108,18 +108,22 @@ class ManageVestigeInstrumentView : public InstrumentViewFixedSize
 	Q_OBJECT
 public:
 	ManageVestigeInstrumentView( Instrument * _instrument, QWidget * _parent, VestigeInstrument * m_vi2 );
-	~ManageVestigeInstrumentView() override;
+	virtual ~ManageVestigeInstrumentView();
+
 
 protected slots:
 	void syncPlugin();
 	void displayAutomatedOnly();
 	void setParameter( lmms::Model * action );
+	void syncParameterText();
 	void closeWindow();
+
 
 protected:
 	virtual void dragEnterEvent( QDragEnterEvent * _dee );
 	virtual void dropEvent( QDropEvent * _de );
 	virtual void paintEvent( QPaintEvent * _pe );
+
 
 private:
 	VestigeInstrument * m_vi;
@@ -129,8 +133,9 @@ private:
 	QPushButton * m_syncButton;
 	QPushButton * m_displayAutomatedOnly;
 	QPushButton * m_closeButton;
-	std::vector<VstPluginKnob*> m_vstKnobs;
-};
+	CustomTextKnob ** vstKnobs;
+
+} ;
 
 
 class VestigeInstrumentView : public InstrumentViewFixedSize
