@@ -46,7 +46,7 @@ namespace gui
 class ActionGroup;
 class AutomatableSlider;
 class ComboBox;
-class LcdSpinBox;
+class LcdFloatSpinBox;
 class MeterDialog;
 class PositionLine;
 class TextFloat;
@@ -132,7 +132,7 @@ private:
 
 	void adjustLeftRightScoll(int value);
 
-	LcdSpinBox * m_tempoSpinBox;
+	LcdFloatSpinBox* m_tempoSpinBox;
 
 	TimeLineWidget* m_timeLine;
 	PositionLine* m_positionLine;
