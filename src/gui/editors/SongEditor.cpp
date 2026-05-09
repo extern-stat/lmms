@@ -68,7 +68,7 @@ constexpr int MIN_PIXELS_PER_BAR = 4;
 constexpr int MAX_PIXELS_PER_BAR = 400;
 constexpr int ZOOM_STEPS = 200;
 
-constexpr std::array SNAP_SIZES{8.f, 4.f, 2.f, 1.f, 1/2.f, 1/4.f, 1/8.f, 1/16.f};
+constexpr std::array SNAP_SIZES{8.f, 4.f, 2.f, 1.f, 1/2.f, 1/4.f, 1/8.f, 1/16.f, 1/3.f, 1/6.f, 1/12.f};
 constexpr std::array PROPORTIONAL_SNAP_SIZES{64.f, 32.f, 16.f, 8.f, 4.f, 2.f, 1.f, 1/2.f, 1/4.f, 1/8.f, 1/16.f, 1/32.f, 1/64.f};
 
 }
