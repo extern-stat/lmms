@@ -148,6 +148,15 @@ protected:
 		return getDynamicFloatingText();
 	}
 
+	/**
+	 * @returns formatted floating text given dynamic text
+	 *          from @a getDynamicFloatingText() or @a getDynamicFloatingTextUpdate()
+	 *
+	 * The default format is:
+	 *     "[description] [dynamic text][unit]"
+	 */
+	virtual QString formatFloatingText(const QString& dynamicText) const;
+
 	void doConnections() override;
 
 	void showTextFloat(int msecBeforeDisplay, int msecDisplayTime, bool forceTextUpdate = false);
@@ -207,7 +216,7 @@ protected:
 	 * @returns which type of floating text is currently being displayed based on how the user
 	 *          is interacting with the control and whether a static tooltip has been set for the control.
 	 */
-	FloatingTextType currentFloatingText() const;
+	FloatingTextType floatingTextType() const;
 
 	QPoint m_lastMousePos; //!< mouse position in last mouseMoveEvent
 	float m_leftOver;

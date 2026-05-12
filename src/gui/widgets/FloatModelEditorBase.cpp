@@ -44,8 +44,19 @@
 #include "StringPairDrag.h"
 
 
-namespace lmms::gui
+namespace lmms::gui {
+
+namespace {
+
+//! Whether the mouse is adjusting the control by dragging
+auto isMouseDragAdjustment(QMouseEvent* event) -> bool
 {
+	return event->button() == Qt::LeftButton
+		&& !(event->modifiers() & KBD_COPY_MODIFIER)
+		&& !(event->modifiers() & Qt::ShiftModifier);
+}
+
+} // namespace
 
 SimpleTextFloat * FloatModelEditorBase::s_textFloat = nullptr;
 
@@ -83,7 +94,7 @@ void FloatModelEditorBase::showTextFloat(int msecBeforeDisplay, int msecDisplayT
 		s_textFloat->setSource(this);
 
 		// Next, set the floating text depending on the floating text type
-		if (currentFloatingText() == FloatingTextType::Static)
+		if (floatingTextType() == FloatingTextType::Static)
 		{
 			// Using static floating text
 			assert(m_staticToolTip.has_value());
@@ -98,7 +109,7 @@ void FloatModelEditorBase::showTextFloat(int msecBeforeDisplay, int msecDisplayT
 		else
 		{
 			// Using dynamic floating text
-			s_textFloat->setText(m_description + ' ' + getDynamicFloatingText() + m_unit);
+			s_textFloat->setText(formatFloatingText(getDynamicFloatingText()));
 		}
 	}
 
@@ -188,9 +199,7 @@ void FloatModelEditorBase::mousePressEvent(QMouseEvent * me)
 {
 	updateInteractionState(me);
 
-	if (me->button() == Qt::LeftButton &&
-			! (me->modifiers() & KBD_COPY_MODIFIER) &&
-			! (me->modifiers() & Qt::ShiftModifier))
+	if (isMouseDragAdjustment(me))
 	{
 		AutomatableModel *thisModel = model();
 		if (thisModel)
@@ -419,25 +428,17 @@ void FloatModelEditorBase::updateInteractionState(QEvent* event)
 	switch (event->type())
 	{
 		case QEvent::Type::MouseButtonPress:
-		{
-			auto me = static_cast<QMouseEvent*>(event);
-			if (me->button() == Qt::LeftButton
-				&& !(me->modifiers() & KBD_COPY_MODIFIER)
-				&& !(me->modifiers() & Qt::ShiftModifier))
+			if (isMouseDragAdjustment(static_cast<QMouseEvent*>(event)))
 			{
 				m_interaction = InteractionType::MouseDrag;
 			}
 			break;
-		}
 		case QEvent::Type::MouseButtonRelease:
-		{
-			auto me = static_cast<QMouseEvent*>(event);
-			if (me->button() == Qt::LeftButton)
+			if (static_cast<QMouseEvent*>(event)->button() == Qt::LeftButton)
 			{
 				m_interaction = InteractionType::None;
 			}
 			break;
-		}
 		case QEvent::Type::MouseMove:
 			if (m_interaction == InteractionType::None)
 			{
@@ -469,7 +470,7 @@ void FloatModelEditorBase::updateInteractionState(QEvent* event)
 	}
 }
 
-auto FloatModelEditorBase::currentFloatingText() const -> FloatingTextType
+auto FloatModelEditorBase::floatingTextType() const -> FloatingTextType
 {
 	switch (m_interaction)
 	{
@@ -531,13 +532,13 @@ void FloatModelEditorBase::friendlyUpdate()
 	{ return; }
 
 	// If this float model is currently controlling dynamic floating text...
-	if (currentFloatingText() == FloatingTextType::Dynamic)
+	if (floatingTextType() == FloatingTextType::Dynamic)
 	{
 		// ...and if the text changed since last time...
 		if (auto updatedText = getDynamicFloatingTextUpdate())
 		{
 			// ...then update the floating text
-			s_textFloat->setText(m_description + ' ' + std::move(*updatedText) + m_unit);
+			s_textFloat->setText(formatFloatingText(*updatedText));
 		}
 	}
 
@@ -548,6 +549,12 @@ void FloatModelEditorBase::friendlyUpdate()
 QString FloatModelEditorBase::getDynamicFloatingText()
 {
 	return QString::number(model()->getRoundedValue());
+}
+
+
+QString FloatModelEditorBase::formatFloatingText(const QString& dynamicText) const
+{
+	return m_description + ' ' + dynamicText + m_unit;
 }
 
 
