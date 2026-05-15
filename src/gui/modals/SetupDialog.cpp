@@ -223,7 +223,7 @@ SetupDialog::SetupDialog(ConfigTab tab_to_open) :
 
 		if (showRestartWarning)
 		{
-			connect(checkBox, &QCheckBox::toggled, this, &this->showRestartWarning);
+			connect(checkBox, &QCheckBox::toggled, this, &SetupDialog::showRestartWarning);
 		}
 
 		if (layout)
