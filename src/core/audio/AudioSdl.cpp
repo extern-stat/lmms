@@ -95,7 +95,7 @@ AudioSdl::AudioSdl(bool& _success_ful, AudioEngine* _audioEngine)
 	const bool isDefaultInput = inputDevice.empty();
 
 	// Try with the configured device
-	const auto inputDeviceCStr = isDefaultInput ? nullptr : inputDevice.c_str();
+	//const auto inputDeviceCStr = isDefaultInput ? nullptr : inputDevice.c_str();
 	//m_inputDevice = SDL_OpenAudioDevice (inputDeviceCStr, 1, &m_inputAudioHandle, &actual, 0);
 
 	// If we did not get a device ID try again with the default device if we did not try that before
