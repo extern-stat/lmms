@@ -2627,7 +2627,7 @@ void PianoRoll::mouseMoveEvent( QMouseEvent * me )
 	}
 	else if (pos.y() > PR_TOP_MARGIN || m_action != Action::None)
 	{
-		bool edit_note = (pos.y() > noteEditTop())
+		bool edit_note = (pos.y() >= noteEditTop())
 			&& m_action != Action::SelectNotes;
 
 
@@ -2712,17 +2712,6 @@ void PianoRoll::mouseMoveEvent( QMouseEvent * me )
 					* (PanningRight - PanningLeft)), PanningLeft, PanningRight);
 			}
 
-			if( m_noteEditMode == NoteEditMode::Volume )
-			{
-				m_lastNoteVolume = vol;
-				showVolTextFloat(vol, position(me));
-			}
-			else if( m_noteEditMode == NoteEditMode::Panning )
-			{
-				m_lastNotePanning = pan;
-				showPanTextFloat(pan, position(me));
-			}
-
 			// When alt is pressed we only edit the note under the cursor
 			bool altPressed = me->modifiers() & Qt::AltModifier;
 			// We iterate from last note in MIDI clip to the first,
@@ -2747,6 +2736,8 @@ void PianoRoll::mouseMoveEvent( QMouseEvent * me )
 					if( m_noteEditMode == NoteEditMode::Volume )
 					{
 						n->setVolume( vol );
+						m_lastNoteVolume = vol;
+						showVolTextFloat(vol, position(me));
 
 						const int baseVelocity = m_midiClip->instrumentTrack()->midiPort()->baseVelocity();
 
@@ -2755,6 +2746,9 @@ void PianoRoll::mouseMoveEvent( QMouseEvent * me )
 					else if( m_noteEditMode == NoteEditMode::Panning )
 					{
 						n->setPanning( pan );
+						m_lastNotePanning = pan;
+						showPanTextFloat(pan, position(me));
+
 						MidiEvent evt(MidiMetaEvent, 0, n->key(), panningToMidi(pan));
 						evt.setMetaEvent( MidiNotePanning );
 						m_midiClip->instrumentTrack()->processInEvent( evt );
