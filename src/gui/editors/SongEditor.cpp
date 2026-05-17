@@ -282,12 +282,14 @@ SongEditor::SongEditor( Song * song ) :
 void SongEditor::saveSettings( QDomDocument& doc, QDomElement& element )
 {
 	element.setAttribute("snap", m_snappingModel->value());
+	element.setAttribute("zoom", m_zoomingModel->value());
 	MainWindow::saveWidgetState( parentWidget(), element );
 }
 
 void SongEditor::loadSettings( const QDomElement& element )
 {
 	m_snappingModel->setValue(element.attribute("snap", QString::number(m_snappingModel->findText("1 Bar"))).toInt());
+	m_zoomingModel->setValue(element.attribute("zoom", QString::number(calculateZoomSliderValue(DEFAULT_PIXELS_PER_BAR))).toInt());
 	MainWindow::restoreWidgetState(parentWidget(), element);
 }
 
