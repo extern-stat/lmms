@@ -1004,11 +1004,6 @@ void FileBrowserTreeWidget::activateListItem(QTreeWidgetItem * item,
 	{
 		handleFile( f, nullptr );
 	}
-	else if( f->handling() != FileItem::FileHandling::NotSupported )
-	{
-		auto it = dynamic_cast<InstrumentTrack*>(Track::create(Track::Type::Instrument, Engine::patternStore()));
-		handleFile( f, it );
-	}
 }
 
 
