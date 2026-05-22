@@ -283,6 +283,7 @@ void SongEditor::saveSettings( QDomDocument& doc, QDomElement& element )
 {
 	element.setAttribute("snap", m_snappingModel->value());
 	element.setAttribute("zoom", m_zoomingModel->value());
+	element.setAttribute("scroll", m_leftRightScroll->value());
 	MainWindow::saveWidgetState( parentWidget(), element );
 }
 
@@ -290,6 +291,11 @@ void SongEditor::loadSettings( const QDomElement& element )
 {
 	m_snappingModel->setValue(element.attribute("snap", QString::number(m_snappingModel->findText("1 Bar"))).toInt());
 	m_zoomingModel->setValue(element.attribute("zoom", QString::number(calculateZoomSliderValue(DEFAULT_PIXELS_PER_BAR))).toInt());
+
+	int scrollValue = element.attribute("scroll", QString::number(m_leftRightScroll->minimum())).toInt();
+	m_leftRightScroll->setMaximum(scrollValue);
+	m_leftRightScroll->setValue(scrollValue);
+
 	MainWindow::restoreWidgetState(parentWidget(), element);
 }
 
@@ -1149,7 +1155,6 @@ void SongEditorWindow::adjustUiAfterProjectLoad()
 	getGUI()->mainWindow()->workspace()->setActiveSubWindow(
 			qobject_cast<QMdiSubWindow *>( parentWidget() ) );
 	connect( qobject_cast<SubWindow *>( parentWidget() ), SIGNAL(focusLost()), this, SLOT(lostFocus()));
-	m_editor->scrolled(0);
 }
 
 
