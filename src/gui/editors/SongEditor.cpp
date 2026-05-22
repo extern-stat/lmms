@@ -1044,6 +1044,7 @@ SongEditorWindow::SongEditorWindow(Song* song) :
 
 	connect(song, SIGNAL(projectLoaded()), this, SLOT(adjustUiAfterProjectLoad()));
 	connect(this, SIGNAL(resized()), m_editor, SLOT(updatePositionLine()));
+	connect(this, &SongEditorWindow::resized, this, [this] { m_editor->realignTracks(); });
 }
 
 QSize SongEditorWindow::sizeHint() const
