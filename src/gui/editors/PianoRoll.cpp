@@ -4503,6 +4503,7 @@ bool PianoRoll::toggleStepRecording()
 
 void PianoRoll::stop()
 {
+	Engine::getSong()->playMidiClip(m_midiClip);
 	Engine::getSong()->stop();
 	m_recording = false;
 	m_scrollBack = m_timeLine->autoScroll() != TimeLineWidget::AutoScrollState::Disabled;

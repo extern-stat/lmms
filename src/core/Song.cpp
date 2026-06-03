@@ -640,10 +640,9 @@ void Song::togglePause()
 
 void Song::stop()
 {
-	// do not stop/reset things again if we're stopped already
-	if( m_playMode == PlayMode::None )
+	if (m_playMode == PlayMode::None)
 	{
-		return;
+		m_playMode = PlayMode::Song;
 	}
 
 	using gui::TimeLineWidget;
