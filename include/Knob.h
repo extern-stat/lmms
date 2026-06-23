@@ -242,7 +242,6 @@ private:
  * Notes:
  * - The units displayed in the tooltip and the @a enterValue() dialog box are hardcoded to dBFS,
  *   but units shown in the context menu must be set via @a setUnit(). Usually this should be "%".
- * - The model is expected to be linearly scaled. (?)
  * - The model's value of 0 must mean -inf dBFS and the
  *   value @a zeroDbfsPoint() (whose default is 100) must mean 0 dBFS.
  * - Models with both positive and negative values are allowed. A negative value is assumed to have
@@ -256,8 +255,6 @@ class LMMS_EXPORT VolumeKnob : public Knob
 public:
 	using Knob::Knob;
 
-	void setModel(Model* model, bool isOldModelValid = true) override;
-
 	//! The value where the volume model is at 0 dBFS (default is 100)
 	auto zeroDbfsPoint() const -> float { return m_zeroDbfsPoint; }
 	void setZeroDbfsPoint(float zeroDbfsPoint)
@@ -267,8 +264,8 @@ public:
 	}
 
 protected:
-	QString getDynamicFloatingText() override;
-	QString formatFloatingText(const QString& dynamicText) const;
+	QString currentValueToText() override;
+	QString getDynamicFloatingText(const QString& currentValue) const;
 	void enterValue() override;
 
 private:

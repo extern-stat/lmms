@@ -531,21 +531,7 @@ void Knob::changeEvent(QEvent * ev)
 	}
 }
 
-
-void VolumeKnob::setModel(Model* model, bool isOldModelValid)
-{
-	AutomatableModelView::setModel(model, isOldModelValid);
-
-	if (auto m = this->model())
-	{
-		// Check for some incompatible models
-		if (m->isScaleLogarithmic()) { throw std::logic_error{"VolumeKnob: model must use linear scaling"}; } // TODO: Is this true?
-		if (m->minValue() > 0) { throw std::logic_error{"VolumeKnob: model must have a non-positive min value"}; }
-		if (m->maxValue() <= 0) { throw std::logic_error{"VolumeKnob: model must have a positive max value"}; }
-	}
-}
-
-QString VolumeKnob::getDynamicFloatingText()
+QString VolumeKnob::currentValueToText()
 {
 	const auto* m = model();
 
@@ -556,7 +542,7 @@ QString VolumeKnob::getDynamicFloatingText()
 
 	// NOTE: The " dBFS" units are hardcoded here instead of being set by setUnit(),
 	//       allowing the model's context menu entries to display the correct units (usually "%").
-	//       This workaround should be removed after the parameter text refactor (#8379).
+	//       This workaround should be revisited after the parameter text refactor (#8379).
 	if (valueToVolumeRatio == 0.) { return QStringLiteral("-∞ dBFS"); }
 
 	if (roundedValue > 0)
@@ -569,10 +555,10 @@ QString VolumeKnob::getDynamicFloatingText()
 	}
 }
 
-QString VolumeKnob::formatFloatingText(const QString& dynamicText) const
+QString VolumeKnob::getDynamicFloatingText(const QString& currentValue) const
 {
-	// Don't include the unit yet - the " dBFS" unit is included in dynamicText currently
-	return m_description + ' ' + dynamicText;
+	// Don't include the unit - the " dBFS" unit is included in currentValue
+	return m_description + ' ' + currentValue;
 }
 
 void VolumeKnob::enterValue()
