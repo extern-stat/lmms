@@ -32,6 +32,7 @@
 #include "ModelView.h"
 #include "Rubberband.h"
 #include "Clip.h"
+#include "embed.h"
 
 
 class QMenu;
@@ -208,6 +209,9 @@ private:
 	QVector<TimePos> m_initialOffsets;
 
 	TextFloat * m_hint;
+
+	QCursor m_cursorSelectLeft = QCursor{embed::getIconPixmap("cursor_select_left"), 0, 16};
+	QCursor m_cursorSelectRight = QCursor{embed::getIconPixmap("cursor_select_right"), 32, 16};
 
 // qproperty fields
 	QColor m_mutedColor;

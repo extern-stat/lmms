@@ -502,7 +502,7 @@ void ClipView::updateCursor(QMouseEvent * me)
 	if (!me->buttons() && m_clip->manuallyResizable() && !isSelected()
 		&& ((posX >= width() - resizeGripWidth()) || (posX < resizeGripWidth())))
 	{
-		setCursor(Qt::SizeHorCursor);
+		setCursor(posX < resizeGripWidth() ? m_cursorSelectLeft : m_cursorSelectRight);
 	}
 	// If we are in the middle on knife mode, use the knife cursor
 	else if (m_trackView->trackContainerView()->knifeMode() && !isSelected())
@@ -676,12 +676,12 @@ void ClipView::mousePressEvent( QMouseEvent * me )
 				else if (pos.x() >= width() - resizeGripWidth())
 				{
 					m_action = Action::Resize;
-					setCursor( Qt::SizeHorCursor );
+					setCursor(m_cursorSelectRight);
 				}
 				else if (pos.x() < resizeGripWidth())
 				{
 					m_action = Action::ResizeLeft;
-					setCursor( Qt::SizeHorCursor );
+					setCursor(m_cursorSelectLeft);
 				}
 				else if (knifeMode)
 				{
