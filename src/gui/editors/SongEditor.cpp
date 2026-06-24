@@ -137,7 +137,7 @@ SongEditor::SongEditor( Song * song ) :
 
 	getGUI()->mainWindow()->addSpacingToToolBar( 40 );
 
-	m_tempoSpinBox = new LcdFloatSpinBox(3, 1, tr("Tempo"), tb);
+	m_tempoSpinBox = new LcdFloatSpinBox(3, 2, tr("Tempo"), tb);
 	m_tempoSpinBox->setModel( &m_song->m_tempoModel );
 	m_tempoSpinBox->setLabel( tr( "TEMPO" ) );
 	m_tempoSpinBox->setToolTip(tr("Tempo in BPM"));
