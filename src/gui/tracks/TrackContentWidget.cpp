@@ -578,6 +578,12 @@ void TrackContentWidget::mousePressEvent( QMouseEvent * me )
 {
 	const auto pos = position(me);
 
+	// Prevent clicks from going though under a Clip
+	if (pos.y() > getTrack()->getHeight() - 2)
+	{
+		return;
+	}
+
 	// Enable box select if control is held when clicking an empty space
 	// (If we had clicked a Clip it would have intercepted the mouse event)
 	if( me->modifiers() & Qt::ControlModifier ){
