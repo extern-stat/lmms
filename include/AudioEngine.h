@@ -303,6 +303,11 @@ public:
 	static bool isAudioDevNameValid(QString name);
 	static bool isMidiDevNameValid(QString name);
 
+	//! @returns true if sanitization of inf/nan values is enabled
+	bool sanitizationEnabled() { return m_sanitizationEnabled.load(std::memory_order_relaxed); }
+
+	//! Enable/disable sanitization of inf/nan values
+	void setSanitizationEnabled(bool enabled) { m_sanitizationEnabled.store(enabled, std::memory_order_relaxed); }
 
 signals:
 	void qualitySettingsChanged();
@@ -407,6 +412,7 @@ private:
 	AudioEngineProfiler m_profiler;
 
 	bool m_clearSignal;
+	std::atomic<bool> m_sanitizationEnabled = false;
 
 	std::recursive_mutex m_changeMutex;
 
