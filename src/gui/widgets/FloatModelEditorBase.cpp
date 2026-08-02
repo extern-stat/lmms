@@ -548,7 +548,7 @@ void FloatModelEditorBase::friendlyUpdate()
 
 QString FloatModelEditorBase::currentValueToText()
 {
-	return QString::number(model()->getRoundedValue());
+	return QString::number(model()->getRoundedValue(), 'f', model()->getDigitCount());
 }
 
 
