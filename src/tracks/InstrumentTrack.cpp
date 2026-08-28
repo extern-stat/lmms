@@ -216,9 +216,12 @@ float InstrumentTrack::baseFreq() const
 InstrumentTrack::~InstrumentTrack()
 {
 	// De-assign midi device
-	if (m_hasAutoMidiDev)
+	if (s_autoAssignedTrack == this)
 	{
-		autoAssignMidiDevice(false);
+		if (m_hasAutoMidiDev)
+		{
+			autoAssignMidiDevice(false);
+		}
 		s_autoAssignedTrack = nullptr;
 	}
 
@@ -1094,6 +1097,7 @@ void InstrumentTrack::autoAssignMidiDevice(bool assign)
 	if ( Engine::audioEngine()->midiClient()->isRaw() && device != "none" )
 	{
 		m_midiPort.setReadable( assign );
+		m_hasAutoMidiDev = assign;
 		return;
 	}
 
