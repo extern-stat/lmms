@@ -203,6 +203,10 @@ VstEffectControlDialog::VstEffectControlDialog( VstEffectControls * _ctl ) :
 		l->setColumnStretch( 1, 1 );
 
 		auto tb = new QToolBar(this);
+		if (m_pluginWidget) {
+			l->addWidget(m_pluginWidget, 3, 0, 1, 1, Qt::AlignCenter);
+		}
+
 		tb->resize( newSize , 32 );
 		tb->addWidget(space0);
 		tb->addWidget( m_rolLPresetButton );
@@ -212,10 +216,6 @@ VstEffectControlDialog::VstEffectControlDialog( VstEffectControls * _ctl ) :
 		tb->addWidget( m_savePresetButton );
 		tb->addWidget( m_managePluginButton );
 		tb->addWidget(space1);
-
-		if (m_pluginWidget) {
-			l->addWidget( m_pluginWidget, 3, 0, 1, 1, Qt::AlignCenter );
-		}
 
 		tbLabel = new QLabel( tr( "Effect by: " ), this );
 		tbLabel->setFont(adjustedToPixelSize(f, SMALL_FONT_SIZE));
