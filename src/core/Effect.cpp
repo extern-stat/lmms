@@ -94,6 +94,8 @@ void Effect::loadSettings( const QDomElement & _this )
 
 bool Effect::processAudioBuffer(AudioBuffer& inOut)
 {
+	processAlwaysImpl();
+
 	if (!isAwake())
 	{
 		if (!inOut.hasSignal(0b11))

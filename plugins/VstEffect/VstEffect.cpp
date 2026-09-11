@@ -105,6 +105,20 @@ Effect::ProcessStatus VstEffect::processImpl(SampleFrame* buf, const f_cnt_t fra
 
 
 
+void VstEffect::processAlwaysImpl()
+{
+	static thread_local auto tempBuf = std::array<SampleFrame, MAXIMUM_BUFFER_SIZE>();
+
+	if (!Engine::getSong()->isExporting() && m_pluginMutex.tryLock(0))
+	{
+		m_plugin->process(tempBuf.data(), tempBuf.data());
+		m_pluginMutex.unlock();
+	}
+}
+
+
+
+
 bool VstEffect::openPlugin(const QString& plugin)
 {
 	gui::TextFloat* tf = nullptr;

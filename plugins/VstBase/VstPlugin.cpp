@@ -406,8 +406,11 @@ bool VstPlugin::processMessage( const message & _m )
 	switch( _m.id )
 	{
 	case IdClickUI:
-		editor()->setFocus();
+	{
+		auto widget = editor();
+		if (widget) { widget->setFocus(); }
 		break;
+	}
 	case IdVstPluginWindowID:
 		m_pluginWindowID = _m.getInt();
 		if (m_embedMethod == "none" && !gui::GuiApplication::isWayland()
