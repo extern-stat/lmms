@@ -87,6 +87,7 @@ AutomationClip::AutomationClip( const AutomationClip & _clip_to_copy ) :
 
 bool AutomationClip::addConnection(AutomatableModel* model, bool searchForDuplicates)
 {
+	assert(_obj != nullptr);
 	QMutexLocker m(&m_clipMutex);
 
 	assert(model != nullptr);
