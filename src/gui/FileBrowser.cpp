@@ -468,6 +468,7 @@ FileBrowserTreeWidget::FileBrowserTreeWidget(QWidget * parent ) :
 	header()->setStretchLastSection(false);
 	header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
+	setIndentation(12);
 	setColumnCount( 1 );
 	headerItem()->setHidden( true );
 	setSortingEnabled( false );
