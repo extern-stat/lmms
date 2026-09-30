@@ -659,6 +659,15 @@ void FileBrowserTreeWidget::contextMenuEvent(QContextMenuEvent* e)
 				QIcon(embed::getIconPixmap("star")), tr("Add favorite file"), [path] { ConfigManager::inst()->addFavoriteItem(path); });
 		}
 
+		// This is here so you don't see the "Song Editor" and "Pattern Editor" headers
+		// when right clicking on effect presets in the browser.
+		//
+		// TODO: Restructure this method in the future so each file type is handled separately.
+		if (file->type() == FileItem::FileType::EffectPreset)
+		{
+			break;
+		}
+
 		if (file->isTrack())
 		{
 			contextMenu.addAction(tr("Send to active instrument-track"), [&] { sendToActiveInstrumentTrack(file); });
@@ -713,7 +722,7 @@ QList<QAction*> FileBrowserTreeWidget::getContextActions(FileItem* file, bool so
 
 	auto fileCanBeInstrument = false;
 	switch (file->type()) {
-	case FileItem::FileType::Preset:
+	case FileItem::FileType::InstrumentPreset:
 	case FileItem::FileType::Sample:
 	case FileItem::FileType::SoundFont:
 	case FileItem::FileType::Patch:
@@ -722,6 +731,7 @@ QList<QAction*> FileBrowserTreeWidget::getContextActions(FileItem* file, bool so
 		fileCanBeInstrument = true;
 
 	case FileItem::FileType::Project:
+	case FileItem::FileType::EffectPreset:
 	case FileItem::FileType::Midi:
 	case FileItem::FileType::Unknown:
 		break;
@@ -872,52 +882,55 @@ void FileBrowserTreeWidget::stopPreview()
 
 
 
-void FileBrowserTreeWidget::mouseMoveEvent( QMouseEvent * me )
+void FileBrowserTreeWidget::mouseMoveEvent(QMouseEvent* me)
 {
 	if (m_mousePressed && (m_pressPos - position(me)).manhattanLength() > QApplication::startDragDistance())
 	{
 		// make sure any playback is stopped
-		mouseReleaseEvent( nullptr );
+		mouseReleaseEvent(nullptr);
 
 		auto f = dynamic_cast<FileItem*>(itemAt(m_pressPos));
-		if( f != nullptr )
+		if (f != nullptr)
 		{
-			switch( f->type() )
+			switch (f->type())
 			{
-				case FileItem::FileType::Preset:
-					new StringPairDrag( f->handling() == FileItem::FileHandling::LoadAsPreset ?
+				case FileItem::FileType::InstrumentPreset:
+					new StringPairDrag(f->handling() == FileItem::FileHandling::LoadAsInstrumentPreset ?
 							"presetfile" : "pluginpresetfile",
 							f->fullName(),
-							embed::getIconPixmap( "preset_file" ), this );
+							embed::getIconPixmap("preset_file"), this);
 					break;
-
+				case FileItem::FileType::EffectPreset:
+					new StringPairDrag("effectpresetfile", f->fullName(),
+							embed::getIconPixmap("preset_file"), this);
+					break;
 				case FileItem::FileType::Sample:
-					new StringPairDrag( "samplefile", f->fullName(),
-							embed::getIconPixmap( "sample_file" ), this );
+					new StringPairDrag("samplefile", f->fullName(),
+							embed::getIconPixmap("sample_file"), this);
 					break;
 				case FileItem::FileType::SoundFont:
-					new StringPairDrag( "soundfontfile", f->fullName(),
-							embed::getIconPixmap( "soundfont_file" ), this );
+					new StringPairDrag("soundfontfile", f->fullName(),
+							embed::getIconPixmap("soundfont_file"), this);
 					break;
 				case FileItem::FileType::SFZ:
 					new StringPairDrag("sfzfile", f->fullName(),
 							embed::getIconPixmap("soundfont_file"), this);
 					break;
 				case FileItem::FileType::Patch:
-					new StringPairDrag( "patchfile", f->fullName(),
-							embed::getIconPixmap( "sample_file" ), this );
+					new StringPairDrag("patchfile", f->fullName(),
+							embed::getIconPixmap("sample_file"), this);
 					break;
 				case FileItem::FileType::VstPlugin:
-					new StringPairDrag( "vstpluginfile", f->fullName(),
-							embed::getIconPixmap( "vst_plugin_file" ), this );
+					new StringPairDrag("vstpluginfile", f->fullName(),
+							embed::getIconPixmap("vst_plugin_file"), this);
 					break;
 				case FileItem::FileType::Midi:
-					new StringPairDrag( "importedproject", f->fullName(),
-							embed::getIconPixmap( "midi_file" ), this );
+					new StringPairDrag("importedproject", f->fullName(),
+							embed::getIconPixmap("midi_file"), this);
 					break;
 				case FileItem::FileType::Project:
-					new StringPairDrag( "projectfile", f->fullName(),
-							embed::getIconPixmap( "project_file" ), this );
+					new StringPairDrag("projectfile", f->fullName(),
+							embed::getIconPixmap("project_file"), this);
 					break;
 
 				default:
@@ -930,7 +943,7 @@ void FileBrowserTreeWidget::mouseMoveEvent( QMouseEvent * me )
 
 
 
-void FileBrowserTreeWidget::mouseReleaseEvent(QMouseEvent * me )
+void FileBrowserTreeWidget::mouseReleaseEvent(QMouseEvent* me)
 {
 	m_mousePressed = false;
 
@@ -952,7 +965,7 @@ void FileBrowserTreeWidget::mouseReleaseEvent(QMouseEvent * me )
 void FileBrowserTreeWidget::handleFile(FileItem * f, InstrumentTrack * it)
 {
 	Engine::audioEngine()->requestChangeInModel();
-	switch( f->handling() )
+	switch (f->handling())
 	{
 		case FileItem::FileHandling::LoadAsProject:
 			if( getGUI()->mainWindow()->mayChangeProject(true) )
@@ -976,7 +989,7 @@ void FileBrowserTreeWidget::handleFile(FileItem * f, InstrumentTrack * it)
 			break;
 		}
 
-		case FileItem::FileHandling::LoadAsPreset: {
+		case FileItem::FileHandling::LoadAsInstrumentPreset: {
 			DataFile dataFile(f->fullName());
 			it->replaceInstrument(dataFile);
 			break;
@@ -1204,12 +1217,13 @@ void FileItem::initPixmaps()
 	static auto s_midiFilePixmap = embed::getIconPixmap("midi_file", 16, 16);
 	static auto s_unknownFilePixmap = embed::getIconPixmap("unknown_file");
 
-	switch( m_type )
+	switch (m_type)
 	{
 		case FileType::Project:
 			setIcon(0, s_projectFilePixmap);
 			break;
-		case FileType::Preset:
+		case FileType::InstrumentPreset:
+		case FileType::EffectPreset:
 			setIcon(0, s_presetFilePixmap);
 			break;
 		case FileType::SoundFont:
@@ -1241,22 +1255,27 @@ void FileItem::determineFileType()
 	m_handling = FileHandling::NotSupported;
 
 	const QString ext = extension();
-	if( ext == "mmp" || ext == "mpt" || ext == "mmpz" )
+	if (ext == "mmp" || ext == "mpt" || ext == "mmpz")
 	{
 		m_type = FileType::Project;
 		m_handling = FileHandling::LoadAsProject;
 	}
-	else if( ext == "xpf" || ext == "xml" )
+	else if (ext == "xpf" || ext == "xml")
 	{
-		m_type = FileType::Preset;
-		m_handling = FileHandling::LoadAsPreset;
+		m_type = FileType::InstrumentPreset;
+		m_handling = FileHandling::LoadAsInstrumentPreset;
 	}
-	else if( ext == "xiz" && ! getPluginFactory()->pluginSupportingExtension(ext).isNull() )
+	else if (ext == "lfxp")
 	{
-		m_type = FileType::Preset;
+		m_type = FileType::EffectPreset;
+		m_handling = FileHandling::LoadAsEffectPreset;
+	}
+	else if (ext == "xiz" && !getPluginFactory()->pluginSupportingExtension(ext).isNull())
+	{
+		m_type = FileType::InstrumentPreset;
 		m_handling = FileHandling::LoadByPlugin;
 	}
-	else if( ext == "sf2" || ext == "sf3" )
+	else if (ext == "sf2" || ext == "sf3")
 	{
 		m_type = FileType::SoundFont;
 	}
@@ -1264,11 +1283,11 @@ void FileItem::determineFileType()
 	{
 		m_type = FileType::SFZ;
 	}
-	else if( ext == "pat" )
+	else if (ext == "pat")
 	{
 		m_type = FileType::Patch;
 	}
-	else if( ext == "mid" || ext == "midi" || ext == "rmi" )
+	else if (ext == "mid" || ext == "midi" || ext == "rmi")
 	{
 		m_type = FileType::Midi;
 		m_handling = FileHandling::ImportAsProject;
@@ -1288,9 +1307,9 @@ void FileItem::determineFileType()
 		m_handling = FileHandling::LoadByPlugin;
 	}
 #endif
-	else if ( ext == "lv2" )
+	else if (ext == "lv2")
 	{
-		m_type = FileType::Preset;
+		m_type = FileType::InstrumentPreset;
 		m_handling = FileHandling::LoadByPlugin;
 	}
 	else
@@ -1330,12 +1349,12 @@ QString FileItem::extension(const QString & file )
 QString FileItem::defaultFilters()
 {
 	const auto projectFilters = QStringList{"*.mmp", "*.mpt", "*.mmpz"};
-	const auto presetFilters = QStringList{"*.xpf", "*.xml", "*.xiz", "*.lv2"};
+	const auto presetFilters = QStringList{"*.xpf", "*.xml", "*.xiz", "*.lv2", "*.lfxp"};
 	const auto soundFontFilters = QStringList{"*.sf2", "*.sf3"};
 	const auto sfzFilters = QStringList{"*.sfz"};
 	const auto patchFilters = QStringList{"*.pat"};
 	const auto midiFilters = QStringList{"*.mid", "*.midi", "*.rmi"};
-	
+
 	auto vstPluginFilters = QStringList{"*.dll"};
 #ifdef LMMS_BUILD_LINUX
 	vstPluginFilters.append("*.so");
