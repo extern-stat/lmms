@@ -105,7 +105,7 @@ Effect::ProcessStatus VstEffect::processImpl(SampleFrame* buf, const f_cnt_t fra
 
 
 
-void VstEffect::processAlwaysImpl()
+void VstEffect::processIdleImpl()
 {
 	static thread_local auto tempBuf = std::array<SampleFrame, MAXIMUM_BUFFER_SIZE>();
 

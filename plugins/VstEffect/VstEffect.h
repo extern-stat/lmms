@@ -46,7 +46,7 @@ public:
 	~VstEffect() override = default;
 
 	ProcessStatus processImpl(SampleFrame* buf, const f_cnt_t frames) override;
-	void processAlwaysImpl() override;
+	void processIdleImpl() override;
 
 	EffectControls * controls() override
 	{

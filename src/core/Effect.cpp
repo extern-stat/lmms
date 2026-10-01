@@ -93,8 +93,6 @@ void Effect::loadSettings(const QDomElement& thisElement)
 
 bool Effect::processAudioBuffer(AudioBuffer& inOut)
 {
-	processAlwaysImpl();
-
 	if (!isAwake())
 	{
 		if (!inOut.hasSignal(0b11))
@@ -104,6 +102,7 @@ bool Effect::processAudioBuffer(AudioBuffer& inOut)
 			// Otherwise auto-quit could become audibly noticeable, which is not intended.
 
 			inOut.silenceChannels(0b11);
+			processIdleImpl();
 
 			return false;
 		}
@@ -115,6 +114,7 @@ bool Effect::processAudioBuffer(AudioBuffer& inOut)
 	{
 		// Plugin is awake but not processing audio
 		processBypassedImpl();
+		processIdleImpl();
 		return false;
 	}
 

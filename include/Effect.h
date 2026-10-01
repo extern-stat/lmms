@@ -171,9 +171,9 @@ protected:
 	virtual void processBypassedImpl() {}
 
 	/**
-	 * Optional method that runs whether an effect is awake or asleep.
+	 * Optional method that runs if an effect is asleep or not running.
 	 */
-	virtual void processAlwaysImpl() {}
+	virtual void processIdleImpl() {}
 
 
 	gui::PluginView* instantiateView(QWidget*) override;
